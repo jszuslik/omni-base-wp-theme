@@ -1,16 +1,16 @@
 /*------------------------------------------------------------------/*
   Theme Name: Omni Base WP Theme
   Theme URI: http://github.com/jszuslik
-  Description: A Responsive WordPress Blog Theme to Start with
+  Description: A Responsive WordPress Bootstrap 4 Starter Theme
   Author URI: https://joshuaszuslik.us
   Author: Joshua Szuslik
   License: GNU General Public License v2 or later
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
   Version: 0.0.1
-  Text domain: omni-wp-theme-
+  Text domain: omni-wp-theme
   Last change:  10-10-2017
   Tags: blog
   GitHub Theme URI: jszuslik/omni-base-wp-theme
   GitHub Theme URI: https://github.com/jszuslik/omni-base-wp-theme
 */
-@import "/assets/css/style.min.css";
+@import "assets/css/style.min.css";
