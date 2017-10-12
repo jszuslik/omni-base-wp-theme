@@ -9,6 +9,7 @@ var gulp 		= require('gulp'),
     changed 	= require('gulp-changed'),
     cleanCSS 	= require('gulp-clean-css'),
     rtlcss 		= require('gulp-rtlcss'),
+    concat      = require('gulp-concat'),
     rename 		= require('gulp-rename'),
     uglify 		= require('gulp-uglify'),
     pump 		= require('pump');
@@ -26,6 +27,21 @@ function errorLog(error) {
 // --------------------------------------------------
 // [Libraries]
 // --------------------------------------------------
+
+// Concat task
+var jsPopper = 'src/js/popper/*.js',
+    jsBootstrap = 'src/js/bootstrap/*.js',
+    jsCustom = 'src/js/custom/*.js',
+    jsDest = 'assets/js';
+
+gulp.task('scripts', function() {
+    return gulp.src([jsPopper, jsBootstrap, jsCustom])
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest(jsDest))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDest));
+});
 
 // Sass - Compile Sass files into CSS
 gulp.task('sass', function () {
@@ -72,9 +88,9 @@ gulp.task('rtlcss', function () {
 
 
 // Minify JS - Minifies JS
-gulp.task('uglify', function (cb) {
+gulp.task('compress', function (cb) {
     pump([
-            gulp.src(['./assets/js/**/*.js', '!./assets/js/**/*.min.js']),
+            gulp.src(['./src/js/*.js', '!./src/js/*.min.js']),
             uglify(),
             rename({ suffix: '.min' }),
             gulp.dest('./assets/js/')
@@ -100,7 +116,7 @@ gulp.task('browserSync', function() {
 // gulp.task('default', ['sass', 'minify-css', 'rtlcss', 'uglify', 'watch']);
 
 // This handles watching and running tasks
-gulp.task('watch', ['browserSync','sass', 'minify-css'], function () {
+gulp.task('watch', ['browserSync','sass', 'minify-css', 'scripts'], function () {
     gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('assets/css/style.css', ['minify-css', browserSync.reload]);
     gulp.watch('assets/css/layout.css', ['rtlcss', browserSync.reload]);

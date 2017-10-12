@@ -45,11 +45,12 @@ class OmniSetup {
 			'caption',
 		) );
 
+		add_image_size('omni-logo', 250, 250);
+
 		// Add theme support for Custom Logo.
 		add_theme_support( 'custom-logo', array(
-			'width'       => 250,
-			'height'      => 250,
-			'flex-width'  => true,
+			'size' => 'omni-logo',
+			'flex-width' => true
 		) );
 
 		register_nav_menus(
@@ -108,6 +109,8 @@ class OmniSetup {
 	 */
 	public function omni_scripts() {
 		wp_enqueue_style( 'omni-style', get_stylesheet_uri() );
+
+		wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.min.js', array('jquery'), false, true);
 	}
 
 }
