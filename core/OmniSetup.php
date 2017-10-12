@@ -34,6 +34,8 @@ class OmniSetup {
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
 		/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.

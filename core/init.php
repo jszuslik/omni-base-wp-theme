@@ -10,6 +10,7 @@ if ( function_exists('omni_require_file') ) {
 	omni_require_file( OMNI_CORE_PATH . 'customizer/default/OmniDefault.php');
 	omni_require_file( OMNI_CORE_PATH . 'customizer/OmniCustomizer.php');
 	omni_require_file( OMNI_CORE_PATH . 'OmniCore.php');
+	omni_require_file(OMNI_CORE_PATH . 'widgets/OmniWidgetInit.php');
 	omni_require_file( OMNI_CORE_PATH . 'common/OmniCommon.php');
 
 	// Custom hooks

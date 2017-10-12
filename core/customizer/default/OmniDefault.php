@@ -13,6 +13,7 @@ class OmniDefault {
 		$defaults['ticker_title']               = __( 'News:', OMNI_TXT_DOMAIN );
 		$defaults['ticker_category']            = 0;
 		$defaults['ticker_number']              = 3;
+		$defaults['show_social_in_header']      = false;
 
 
 		// Pass through filter.
