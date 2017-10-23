@@ -193,7 +193,7 @@ class OmniWidgetBase extends WP_Widget {
 						<span class="field-label"><strong><?php echo esc_html( $field['label'] ); ?></strong></span>
 					</label>
 					<!-- <br /> -->
-					<input type="button" class="select-img button button-primary" value="<?php esc_attr_e( 'Upload', 'university-hub-pro' ); ?>" data-uploader_title="<?php esc_attr_e( 'Select Image', 'university-hub-pro' ); ?>" data-uploader_button_text="<?php esc_attr_e( 'Choose Image', 'university-hub-pro' ); ?>" />
+					<input type="button" class="select-img button button-primary" value="<?php esc_attr_e( 'Upload', OMNI_TXT_DOMAIN ); ?>" data-uploader_title="<?php esc_attr_e( 'Select Image', OMNI_TXT_DOMAIN ); ?>" data-uploader_button_text="<?php esc_attr_e( 'Choose Image', OMNI_TXT_DOMAIN ); ?>" />
 					<?php
 					$image_status = false;
 					if ( ! empty( $value ) ) {
@@ -204,7 +204,7 @@ class OmniWidgetBase extends WP_Widget {
 						$remove_button_style = 'display:inline-block;';
 					}
 					?>
-					<input type="button" value="<?php echo esc_attr( _x( 'X', 'remove button', 'university-hub-pro' ) ); ?>" class="button button-secondary btn-image-remove" style="<?php echo esc_attr( $remove_button_style ); ?>" />
+					<input type="button" value="<?php echo esc_attr( _x( 'X', 'remove button', OMNI_TXT_DOMAIN ) ); ?>" class="button button-secondary btn-image-remove" style="<?php echo esc_attr( $remove_button_style ); ?>" />
 					<input type="hidden" class="img" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 					<div class="image-preview-wrap">
 						<?php if ( ! empty( $value ) ) : ?>

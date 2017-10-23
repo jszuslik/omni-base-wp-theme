@@ -33,11 +33,9 @@ class OmniStructureHook {
 
 	public function omni_wp_theme_header_start() { ?>
 		<header id="masthead" class="site-header" role="banner">
-			<div class="container">
 	<?php }
 
 	public function omni_wp_theme_header_end() { ?>
-			</div><!-- .container -->
 		</header><!-- #masthead -->
 	<?php }
 

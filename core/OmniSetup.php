@@ -1,10 +1,16 @@
 <?php
 
 class OmniSetup {
+
+	private $production;
+
 	public function __construct() {
+		$this->production = false;
+
 		add_action('after_setup_theme', array($this, 'omni_theme_setup'));
 		add_action( 'wp_head', array($this, 'omni_javascript_detection'), 0 );
 		add_action( 'wp_enqueue_scripts', array($this, 'omni_scripts') );
+		add_filter( 'get_custom_logo', array($this, 'omni_wp_theme_change_logo_class') );
 	}
 
 	public function omni_theme_setup() {
@@ -48,11 +54,18 @@ class OmniSetup {
 		) );
 
 		add_image_size('omni-logo', 250, 250);
+		add_image_size('2-column-with-header-bg', 1900);
+		add_image_size('2-column-with-header-column', 540, 811);
+		add_image_size('omni-jumbotron', 1900);
+		add_image_size('omni-banner', 1900);
+		add_image_size('omni-column', 170, 400);
+		add_image_size('omni-single-bg', 1900, 999);
 
 		// Add theme support for Custom Logo.
 		add_theme_support( 'custom-logo', array(
 			'size' => 'omni-logo',
-			'flex-width' => true
+			'flex-width' => true,
+			'flex-height' => true
 		) );
 
 		register_nav_menus(
@@ -90,6 +103,9 @@ class OmniSetup {
 			)
 		);
 
+		// Enable support for footer widgets.
+		add_theme_support( 'footer-widgets', 4 );
+
 		$starter_content = apply_filters( 'omni-wp-theme_starter_content', $starter_content );
 
 		add_theme_support( 'starter-content', $starter_content );
@@ -111,8 +127,21 @@ class OmniSetup {
 	 */
 	public function omni_scripts() {
 		wp_enqueue_style( 'omni-style', get_stylesheet_uri() );
+		if ($this->production) {
+			wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.min.js', array('jquery'), false, true);
+		} else {
+			wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), false, true);
+		}
+		wp_enqueue_style('omni-google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i|Roboto:400,400i,500,500i,700,700i');
 
-		wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.min.js', array('jquery'), false, true);
+	}
+
+	public function omni_wp_theme_change_logo_class( $html ) {
+
+		$html = str_replace( 'custom-logo', 'omni-custom-logo-style-svg', $html );
+		$html = str_replace( 'custom-logo-link', 'omni-custom-logo-style-svg', $html );
+
+		return $html;
 	}
 
 }

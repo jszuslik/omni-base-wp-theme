@@ -21,4 +21,155 @@ class OmniCore {
 		return $value;
 	}
 
+	public static function omni_wp_theme_get_image_id_by_url( $image_url ) {
+		global $wpdb;
+		$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+		return $attachment[0];
+	}
+
+	public static function omni_wp_theme_return_responsive_image_set_with_lightbox( $image_url, $image_size = 'full',
+		$lightbox_group_id = 'default-lightbox' ) {
+		$image_id = self::omni_wp_theme_get_image_id_by_url($image_url);
+
+		$image_size_url = wp_get_attachment_image_src($image_id, $image_size);
+		$orig_image_url = wp_get_attachment_url($image_id);
+		$image_srcset = wp_get_attachment_image_srcset($image_id, $image_size);
+
+		$image = '<a data-lightbox="' . $lightbox_group_id . '" href="' . $orig_image_url . '">';
+		$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid">';
+		$image .= '</a>';
+
+		return $image;
+	}
+	public static function omni_wp_theme_return_responsive_image_set( $image_url, $image_size = 'full' ) {
+		$image_id = self::omni_wp_theme_get_image_id_by_url($image_url);
+
+		$image_size_url = wp_get_attachment_image_src($image_id, $image_size);
+		$image_srcset = wp_get_attachment_image_srcset($image_id, $image_size);
+
+		$image = '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid">';
+
+		return $image;
+	}
+
+	public static function omni_wp_theme_echo_no_gutters( $key ) {
+		$value = self::omni_wp_theme_get_option($key);
+		if ($value == 'container-fluid') {
+			return 'no-gutters';
+		} else {
+			return '';
+		}
+	}
+
+	public static function omni_wp_theme_branding_image_or_color() {
+
+		$type = self::omni_wp_theme_get_option('branding_bg_color_select');
+		switch ($type) {
+			case '-custom-image':
+				$image = self::omni_wp_theme_get_option('branding_bg_image_upload');
+				return 'style="background-image: url(\'' . $image . '\')"';
+			case '-custom-color':
+				$color = self::omni_wp_theme_get_option('branding_bg_color');
+				return 'style="background-color: ' . $color . '"';
+			default:
+				return '';
+		}
+
+	}
+
+	public static function omni_wp_theme_get_active_homepage_sections() {
+		$output = array();
+
+		$homepage_sections_raw = (array) self::omni_wp_theme_get_option('homepage_sections');
+
+		if( ! empty( $homepage_sections_raw ) ) {
+			$default_sections = OmniOptions::omni_wp_theme_get_home_sections_options();
+			foreach ($homepage_sections_raw as $key) {
+				if ( isset( $default_sections[$key] ) ) {
+					$output[ $key ] = $default_sections[ $key ];
+					$output[ $key ]['post_id'] = self::omni_wp_theme_get_post_id_by_slug($key);
+				}
+			}
+		}
+		// p($output);
+		return $output;
+	}
+
+	public static function omni_wp_theme_get_post_id_by_slug( $slug ) {
+
+		$args = array(
+			'name'       => $slug,
+			'post_type'  => 'homepage_section'
+		);
+		$posts = get_posts($args);
+		return $posts[0]->ID;
+	}
+
+	public static function omni_wp_theme_render_meta_boxes($field_array, $stored_page_meta) {
+
+		$fields = '';
+
+		foreach($field_array as $field_group) {
+			$fields .= '<h2>' . $field_group['name'] . '</h2>';
+			foreach($field_group['fields'] as $field) {
+				$value = null;
+				$type = $field['type'];
+				$name = $field['name'];
+				$id = $field['id'];
+				$label = $field['label'];
+				$btn_id = null;
+				$btn_text = __( 'Choose or Upload an Image', OMNI_TXT_DOMAIN);
+				if(isset($field['btn_text']))
+					$btn_text = $field['btn_text'];
+				if(isset($field['btn_id']))
+					$btn_id = $field['btn_id'];
+				if(isset($stored_page_meta[$id]))
+					$value = $stored_page_meta[$id];
+				if(isset($field['choices']))
+					$choices = $field['choices'];
+				// p($value);
+				$description = $field['description'];
+				switch($type){
+					case 'text':
+						$fields .= '<div>';
+						$fields .= '<label>' . $label . '</label>';
+						$fields .= '<p><input type="' . $type . '" name="' . $name . '" id="' . $id . '" value="' . $value[0] . '" style="width: 100%" /></p>';
+						$fields .= '</div>';
+						break;
+					case 'textarea':
+						$fields .= '<div>';
+						$fields .= '<label>' . $label . '</br><small>' . $description . '</small></label>';
+						$fields .= '<p><textarea name="' . $name . '" id="' . $id . '" rows="4" style="width:100%">' . $value[0] . '</textarea></p>';
+						$fields .= '</div>';
+						break;
+					case 'image':
+						$fields .= '<div>';
+						$fields .= '<label>' . $label . '</label><br><small>' . $description . '</small>';
+						$fields .= '<input type="text" name="' . $name . '" id="upload_image" value="' . $value[0] . '" style="width: 100%" /><br>';
+						$fields .= '<input type="button" id="upload_image_button" class="button nrw_button" value="'. $btn_text .'"/></p>';
+						$fields .= '</div>';
+						break;
+					case 'select':
+						$fields .= '<div>';
+						$fields .= '<label>' . $label . '</label><br><small>' . $description . '</small>';
+						$fields .= '<p><select name="' . $name . '" id="' . $id . '" style="width: 150px">';
+						$fields .= '<option>-- Select --</option>';
+
+						foreach ($choices as $key => $choice) :
+							if ($key == $value[0]) :
+								$fields .= '<option value="'. $key . '" selected="selected">' . $choice . '</option>';
+							else :
+								$fields .= '<option value="'. $key . '">' . $choice . '</option>';
+							endif;
+						endforeach;
+
+						$fields .= '</select></p>';
+						$fields .= '</div>';
+						break;
+				}
+			}
+		}
+		return $fields;
+	}
+
 }

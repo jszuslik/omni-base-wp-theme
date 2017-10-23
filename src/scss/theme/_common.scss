@@ -1,0 +1,12 @@
+.omni_color_white {
+  color: #fff;
+  -moz-transition: all 0.4s ease-out 0s;
+  -webkit-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+}
+.omni_color_gray {
+  color: #6a6969;
+}
+a.omni_color_white:hover {
+  color: #4b4b4b;
+}

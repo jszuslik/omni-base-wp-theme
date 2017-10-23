@@ -230,6 +230,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap@4.0.0-beta.2:
+  version "4.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.2.tgz#4d67d2aa2219f062cd90bc1247e6747b9e8fd051"
+
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -1605,6 +1609,10 @@ liftoff@^2.1.0:
     lodash.mapvalues "^4.4.0"
     rechoir "^0.6.2"
     resolve "^1.1.7"
+
+lightbox2@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/lightbox2/-/lightbox2-2.9.0.tgz#f9a2fdb41ab3ca94bf0f769210b59bb14a5d5f62"
 
 limiter@^1.0.5:
   version "1.1.2"

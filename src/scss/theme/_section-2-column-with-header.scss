@@ -1,0 +1,194 @@
+.omni_2_column_w_header_bg {
+  background-size: 100% 140px;
+  background-repeat: no-repeat;
+}
+.omni_2_column_w_header_header {
+  font-family: 'timesbold_italic', serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+.section-header-start {
+  font-family: 'Roboto', sans-serif;
+  font-size: 9px;
+  vertical-align: super;
+  border-bottom: 1px solid #fff;
+  line-height: 1;
+}
+.section-2-column-w-header-top-content {
+  padding: 0;
+}
+.section-2-column-w-header-bottom-content {
+  padding: 30px 0;
+}
+.omni_column_header_small {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.omni_column_title {
+  font-family: 'timesbold_italic', serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 5px;
+}
+.section-2-column-w-header-top-content h3::first-letter{
+  border-bottom: 2px solid #fff;
+}
+.section-2-column-w-header-top-content h6 span {
+  cursor: pointer;
+  font-family: "Roboto",sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 1.5px;
+  font-weight: 300;
+}
+.omni_column_content {
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+@media (min-width: 568px) {
+  .omni_2_column_w_header_bg {
+    background-size: 100% 150px;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+  }
+  .omni_2_column_w_header_header {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+  }
+  .section-header-start {
+    font-size: 10px;
+    line-height: 1;
+  }
+  .section-2-column-w-header-top-content {
+    padding: 0;
+  }
+  .omni_column_header_small {
+    font-size: 12px;
+  }
+  .omni_column_title {
+    font-size: 2.2rem;
+    letter-spacing: 5px;
+  }
+  .section-2-column-w-header-top-content h6 span {
+    font-size: 12px;
+  }
+  .section-2-column-w-header-bottom-content {
+    padding: 30px 0;
+  }
+  .omni_column_content {
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+  }
+}
+@media (min-width: 768px) {
+  .omni_2_column_w_header_bg {
+    background-size: 100% 220px;
+    background-repeat: no-repeat;
+    padding-bottom: 115px;
+  }
+  .omni_2_column_w_header_header {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+  }
+  .section-header-start {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .section-2-column-w-header-top-content {
+    padding: 0 20px 30px;
+  }
+  .omni_column_header_small {
+    font-size: 16px;
+  }
+  .omni_column_title {
+    font-size: 55px;
+    letter-spacing: 5px;
+  }
+  .section-2-column-w-header-bottom-content {
+    padding: 20px 20px 0;
+  }
+  .omni_column_content {
+    font-size: 14.7px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+}
+@media (min-width: 992px) {
+  .omni_2_column_w_header_bg {
+    background-size: 100% 240px;
+    background-repeat: no-repeat;
+  }
+  .omni_2_column_w_header_header {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+  }
+  .section-header-start {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .section-2-column-w-header-top-content {
+    padding: 0 30px 45px;
+  }
+  .omni_column_header_small {
+    font-size: 16px;
+  }
+  .omni_column_title {
+    font-size: 66px;
+    letter-spacing: 5px;
+  }
+  .section-2-column-w-header-bottom-content {
+    padding: 30px 30px 100px;
+  }
+  .section-2-column-w-header-bottom-content .omni_column_header_small {
+    padding-bottom: 30px;
+  }
+  .omni_column_content {
+    font-size: 14.7px;
+    line-height: 2;
+    letter-spacing: 0.25px;
+  }
+}
+@media (min-width: 1200px) {
+  .omni_2_column_w_header_bg {
+    background-size: 100% 299px;
+    background-repeat: no-repeat;
+  }
+  .omni_2_column_w_header_header {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    padding-bottom: 40px;
+  }
+  .section-header-start {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .section-2-column-w-header-top-content {
+    padding: 0 85px 130px;
+  }
+  .omni_column_header_small {
+    font-size: 16px;
+  }
+  .omni_column_title {
+    font-size: 86px;
+    letter-spacing: 5px;
+    padding-bottom: 15px;
+  }
+  .section-2-column-w-header-bottom-content {
+    padding: 30px 0 100px 85px;
+  }
+}

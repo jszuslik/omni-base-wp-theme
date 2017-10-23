@@ -24,7 +24,7 @@ class OmniSocialWidget extends OmniWidgetBase {
 			);
 		}
 
-		parent::__construct( 'omni-wp-theme-social', __( 'Social', OMNI_TXT_DOMAIN ), $opts, array(), $fields );
+		parent::__construct( 'omni-wp-theme-social', __( 'Social Icons', OMNI_TXT_DOMAIN ), $opts, array(), $fields );
 
 	}
 
@@ -39,13 +39,16 @@ class OmniSocialWidget extends OmniWidgetBase {
 		}
 
 		if ( has_nav_menu( 'social' ) ) {
-			wp_nav_menu( array(
-				             'theme_location' => 'social',
-				             'container'      => false,
-				             'depth'          => 1,
-				             'link_before'    => '<span class="screen-reader-text">',
-				             'link_after'     => '</span>',
-			             ) );
+			wp_nav_menu(
+				array(
+					'menu_class' => 'social-link-list',
+					'theme_location' => 'social',
+					'container'      => false,
+					'depth'          => 1,
+					'link_before'    => '<span class="screen-reader-text">',
+					'link_after'     => '</span>',
+				)
+			);
 		}
 
 		echo $args['after_widget'];
@@ -53,5 +56,3 @@ class OmniSocialWidget extends OmniWidgetBase {
 	}
 
 }
-//$omni_social_widget = new OmniSocialWidget();
-register_widget( 'OmniSocialWidget');

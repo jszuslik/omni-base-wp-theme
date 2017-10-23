@@ -9,26 +9,45 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- * @version 1.0
+ * @package
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 get_header(); ?>
 
-<div class="container">
-	<div class="row">
-		<div class="col-12 col-sm-4">
-			Test
-		</div>
-		<div class="col-12 col-sm-4">
-			Test
-		</div>
-		<div class="col-12 col-sm-4">
-			Test
-		</div>
-	</div>
-</div>
+<?php if ( 'page' == get_option('show_on_front') && is_front_page() ) : ?>
+    <?php
+        do_action('omni_wp_theme_action_before_homepage_sections');
+        do_action( 'omni_wp_theme_action_homepage_sections')
 
+    ?>
+<?php else : ?>
+<div class="container">
+	<div id="primary">
+        <main id="main">
+
+	        <?php if ( have_posts() ) : ?>
+
+		        <?php /* Start the Loop */ ?>
+		        <?php while ( have_posts() ) : the_post(); ?>
+
+			        <?php
+			        /* Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+			        get_template_part( 'content', get_post_format() );
+			        ?>
+
+		        <?php endwhile; ?>
+
+
+	        <?php else : ?>
+
+		        <?php get_template_part( 'no-results', 'index' ); ?>
+
+	        <?php endif; ?>
+        </main>
+    </div>
+</div>
+<?php endif; ?>
 <?php get_footer();
