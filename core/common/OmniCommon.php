@@ -117,6 +117,28 @@ class OmniCommon {
 		        return 'No Content';
 	        case 'omni_section_intro_content':
 		        return 'No Content';
+	        case 'omni_section_side':
+		        return 'left';
+            case 'omni_section_row_1_header':
+                return 'Default Row 1 Header';
+	        case 'omni_section_row_1_content':
+		        return 'Default Row 1 Content';
+	        case 'omni_section_row_1_image':
+		        return self::omni_wp_theme_upload_image('http://via.placeholder.com/' . $value['width']. 'x' . $value['height']. '.png', $post_id);
+	        case 'omni_section_row_1_link_text':
+		        return 'No Content';
+	        case 'omni_section_row_1_lookbook':
+		        return self::omni_wp_theme_upload_image('http://www.pdf995.com/samples/pdf.pdf', $post_id);
+	        case 'omni_section_row_2_header':
+		        return 'Default Row 2 Header';
+	        case 'omni_section_row_2_content':
+		        return 'Default Row 2 Content';
+	        case 'omni_section_row_2_image':
+		        return self::omni_wp_theme_upload_image('http://via.placeholder.com/' . $value['width']. 'x' . $value['height']. '.png', $post_id);
+	        case 'omni_section_row_2_link_text':
+		        return 'No Content';
+	        case 'omni_section_row_2_lookbook':
+		        return self::omni_wp_theme_upload_image('http://www.pdf995.com/samples/pdf.pdf', $post_id);
             default:
                 return $default;
         }

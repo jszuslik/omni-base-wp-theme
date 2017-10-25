@@ -32,6 +32,7 @@ class OmniCustomizer {
 		// Load customize option
 		omni_require_file(OMNI_CORE_PATH . 'customizer/option/OmniOption.php');
 		omni_require_file(OMNI_CORE_PATH . 'customizer/option/header/OmniHeaderOption.php');
+		omni_require_file(OMNI_CORE_PATH . 'customizer/option/footer/OmniFooterOption.php');
 		omni_require_file(OMNI_CORE_PATH . 'customizer/option/homepage/OmniHomepageOption.php');
 		omni_require_file(OMNI_CORE_PATH . 'customizer/option/homepage/jumbotron/OmniJumbotronOption.php');
 

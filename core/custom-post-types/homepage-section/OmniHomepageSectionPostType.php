@@ -111,15 +111,15 @@ class OmniHomepageSectionPostType {
 			array(
 				'post_id'   => -1,
 				'author_id' => 1,
-				'slug'      => '2-column-no-header-image-left',
-				'title'     => __('2 Column No Header Image Left', OMNI_TXT_DOMAIN),
+				'slug'      => '2-column-no-header-image-side-1',
+				'title'     => __('2 Column No Header Image Side 1', OMNI_TXT_DOMAIN),
 				'menu_order'  => 5
 			),
 			array(
 				'post_id'   => -1,
 				'author_id' => 1,
-				'slug'      => '2-column-no-header-image-right',
-				'title'     => __('2 Column No Header Image Right', OMNI_TXT_DOMAIN),
+				'slug'      => '2-column-no-header-image-side-2',
+				'title'     => __('2 Column No Header Image Side 2', OMNI_TXT_DOMAIN),
 				'menu_order'  => 6
 			),
 			array(
@@ -160,7 +160,12 @@ class OmniHomepageSectionPostType {
 						'menu_order'       => $init_post['menu_order']
 					)
 				);
+			if( '2-column-no-header-image-side-1' == $init_post['slug'] || '2-column-no-header-image-side-2' == $init_post['slug']){
+				update_post_meta($post_id, "_template_type", '2-column-no-header-image-side');
+			} else {
 				update_post_meta($post_id, "_template_type", $init_post['slug']);
+            }
+
 			endif;
 		endforeach;
 

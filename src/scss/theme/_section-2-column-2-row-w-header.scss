@@ -1,0 +1,37 @@
+.omni_2_col_2_row_header {
+  padding: 75px 0;
+}
+.omni_section_header {
+  font-family: 'timesbold_italic', serif;
+  font-size: 87px;
+  text-transform: uppercase;
+  color: #1b1b1b;
+  letter-spacing: 5px;
+  padding: 100px 0;
+}
+.omni_section_row_1_wrapper {
+  padding: 100px 0 40px;
+}
+.omni_section_row_2_wrapper {
+  padding: 40px 0 100px;
+}
+.omni_2_col_2_row_header .omni_side_header {
+  padding-bottom: 30px;
+}
+.omni_2_col_2_row_header .omni_column_content {
+  font-size: 13px;
+}
+.omni_row_content_outer_wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.omni_row_content_inner_wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 15px;
+}
+.omni_2_col_2_row_header .omni_btn_light {
+  text-align: center;
+  padding: 15px 30px;
+}

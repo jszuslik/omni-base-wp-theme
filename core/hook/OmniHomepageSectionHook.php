@@ -10,6 +10,7 @@ class OmniHomepageSectionHook {
 		global $post;
 		$orig_post = $post;
 		$active_sections = OmniCore::omni_wp_theme_get_active_homepage_sections();
+		// p($active_sections);
 
 		if ( ! empty( $active_sections ) ) {
 			echo '<div id="front-page-home-sections" class="widget-area">';

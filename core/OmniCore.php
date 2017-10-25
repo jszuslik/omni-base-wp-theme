@@ -28,7 +28,7 @@ class OmniCore {
 	}
 
 	public static function omni_wp_theme_return_responsive_image_set_with_lightbox( $image_url, $image_size = 'full',
-		$lightbox_group_id = 'default-lightbox' ) {
+		$lightbox_group_id = 'default-lightbox', $width = 'auto', $height = 'auto' ) {
 		$image_id = self::omni_wp_theme_get_image_id_by_url($image_url);
 
 		$image_size_url = wp_get_attachment_image_src($image_id, $image_size);
@@ -36,7 +36,8 @@ class OmniCore {
 		$image_srcset = wp_get_attachment_image_srcset($image_id, $image_size);
 
 		$image = '<a data-lightbox="' . $lightbox_group_id . '" href="' . $orig_image_url . '">';
-		$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid">';
+		$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid" width="'
+		          .$width.'" height="'.$height.'">';
 		$image .= '</a>';
 
 		return $image;
@@ -81,10 +82,13 @@ class OmniCore {
 		$output = array();
 
 		$homepage_sections_raw = (array) self::omni_wp_theme_get_option('homepage_sections');
+		// p($homepage_sections_raw);
 
 		if( ! empty( $homepage_sections_raw ) ) {
 			$default_sections = OmniOptions::omni_wp_theme_get_home_sections_options();
+			// p($default_sections);
 			foreach ($homepage_sections_raw as $key) {
+				// p($key);
 				if ( isset( $default_sections[$key] ) ) {
 					$output[ $key ] = $default_sections[ $key ];
 					$output[ $key ]['post_id'] = self::omni_wp_theme_get_post_id_by_slug($key);
@@ -110,6 +114,7 @@ class OmniCore {
 		$fields = '';
 
 		foreach($field_array as $field_group) {
+			$fields .= '<div class="inside">';
 			$fields .= '<h2>' . $field_group['name'] . '</h2>';
 			foreach($field_group['fields'] as $field) {
 				$value = null;
@@ -166,8 +171,30 @@ class OmniCore {
 						$fields .= '</select></p>';
 						$fields .= '</div>';
 						break;
+					case 'wp_editor':
+						wp_editor( htmlspecialchars_decode($value[0]), $name, $settings = array
+						('textarea_name'=>$name, 'wpautop' => false) );
+						break;
+					case 'radio':
+						$fields .= '<div>';
+						$fields .= '<label>' . $label . '</label><br><small>' . $description . '</small>';
+
+							foreach ($choices as $key => $choice) {
+								if ( $value[0] == $key ) {
+									$fields .= '<input type="radio" name="' . $name . '" value="' . $key . '" checked="checked">' . $choice . '<br>';
+								} else {
+									$fields .= '<input type="radio" name="' . $name . '" value="' . $key . '">' . $choice . '<br>';
+								}
+
+
+
+						}
+
+						$fields .= '</div><br>';
+						break;
 				}
 			}
+			$fields .= '</div>';
 		}
 		return $fields;
 	}

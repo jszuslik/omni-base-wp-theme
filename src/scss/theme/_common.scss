@@ -7,6 +7,33 @@
 .omni_color_gray {
   color: #6a6969;
 }
+.omni_color_dark_gray {
+  color: #131212;
+}
+.omni_bg_color_light_gray {
+  background-color: #f0f0f0;
+}
 a.omni_color_white:hover {
   color: #4b4b4b;
+}
+.omni_btn_light {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Roboto', serif;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  letter-spacing: 1.5px;
+  padding: 15px 125px 15px 20px;
+  -moz-transition: all 0.4s ease-out 0s;
+  -webkit-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+  margin-top: 40px;
+}
+.omni_btn_light:hover {
+  color: #ffffff;
+  background-color: #000000;
+  text-decoration: none;
 }

@@ -47,6 +47,8 @@ class OmniDefault {
 		$defaults['hp_section_bg_color']          = '-primary';
 		$defaults['homepage_sections']            = array( 'call-to-action', 'news-and-events', 'latest-news' );
 
+		$defaults['footer_menu_alignment']        = 'inline';
+
 
 		// Pass through filter.
 		$defaults = apply_filters( 'omni_wp_theme_filter_default_theme_options', $defaults );

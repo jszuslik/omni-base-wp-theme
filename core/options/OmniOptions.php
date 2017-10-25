@@ -111,13 +111,13 @@ class OmniOptions {
 				'label'    => __( '2 Column 2 Row With Header', OMNI_TXT_DOMAIN ),
 				'template' => 'template-parts/frontpage/2-column-2-row-with-header',
 			),
-			'2-column-no-header-image-right' => array(
-				'label'    => __( '2 Column No Header Image Right', OMNI_TXT_DOMAIN ),
-				'template' => 'template-parts/frontpage/2-column-no-header-image-right',
+			'2-column-no-header-image-side-1' => array(
+				'label'    => __( '2 Column No Header Image Side', OMNI_TXT_DOMAIN ),
+				'template' => 'template-parts/frontpage/2-column-no-header-image-side',
 			),
-			'2-column-no-header-image-left' => array(
-				'label'    => __( '2 Column No Header Image Left', OMNI_TXT_DOMAIN ),
-				'template' => 'template-parts/frontpage/2-column-no-header-image-left',
+			'2-column-no-header-image-side-2' => array(
+				'label'    => __( '2 Column No Header Image Side', OMNI_TXT_DOMAIN ),
+				'template' => 'template-parts/frontpage/2-column-no-header-image-side',
 			),
 			'single-image-background' => array(
 				'label'    => __( 'Single Image Background', OMNI_TXT_DOMAIN ),
@@ -162,6 +162,16 @@ class OmniOptions {
 		endforeach;
 
 		$output = apply_filters( 'omni_wp_theme_filter_home_section_posts', $choices );
+		// p($output);
+		return $output;
+	}
+	public static function omni_wp_theme_get_alignment_options() {
+		$choices = array(
+			'left'    => __('Left', OMNI_TXT_DOMAIN),
+			'right'   => __('Right', OMNI_TXT_DOMAIN)
+		);
+
+		$output = apply_filters('omni_wp_theme_filter_alignment_options', $choices);
 		return $output;
 	}
 

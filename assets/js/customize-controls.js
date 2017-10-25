@@ -14,13 +14,14 @@
                             return this.value;
                         }
                     ).get();
-                    console.log(checkbox_values);
+
                     // Set the value.
                     if ( null === checkbox_values ) {
                         control.setting.set( '' );
                     } else {
                         control.setting.set( checkbox_values );
                     }
+                    console.log(checkbox_values);
                 }
             );
 
@@ -28,7 +29,7 @@
                 update: function( event, ui ){
 
                     // Get all of the checkbox values.
-                    var checkbox_values = $( 'input[type="checkbox"]:checked', control.container ).map(
+                    var checkbox_values = $( 'input[type="checkbox"]', control.container ).map(
                         function(i) {
                             menu_order = i + 1;
                             post_id = jQuery(this).attr("data-post_id");

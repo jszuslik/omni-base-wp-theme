@@ -23,7 +23,12 @@ class OmniJumbotronHook {
 
 	public function omni_wp_theme_display_image_jumbotron() {
 		$image = OmniCore::omni_wp_theme_get_option('jumbotron_bg_image_upload');
-		$responsive_set = OmniCore::omni_wp_theme_return_responsive_image_set($image, 'omni-jumbotron');
+		if($image) {
+			$responsive_set = OmniCore::omni_wp_theme_return_responsive_image_set($image, 'omni-jumbotron');
+        } else {
+			$responsive_set = 'No Image';
+        }
+
 		$jumbotron_header = OmniCore::omni_wp_theme_get_option('jumbotron_header');
 		$jumbotron_sub_header = OmniCore::omni_wp_theme_get_option('jumbotron_sub_header');
 		$jumbotron_content = OmniCore::omni_wp_theme_get_option('jumbotron_content');

@@ -23,6 +23,8 @@ if ( function_exists('omni_require_file') ) {
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/OmniFullWidthImageSectionMeta.php');
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/Omni2ColumnProductSectionMeta.php');
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/OmniSingleImageBackgroundMeta.php');
+	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/Omni2ColumnImageSideMeta.php');
+	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/Omni2Col2RowHeaderMeta.php');
 
 	// Custom hooks
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniHeaderCustomHook.php');

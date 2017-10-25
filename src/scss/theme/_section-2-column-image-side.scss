@@ -1,0 +1,41 @@
+.omni_2_column_image_side {
+  position: relative;
+  padding: 75px 0 ;
+}
+.omni_single_image_side {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.omni_single_image_side_inner_wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 70px 0 0;
+}
+.omni_side_header {
+  font-size: 14.7px;
+  font-family: 'Roboto', serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 3px;
+  line-height: 1.75;
+}
+.omni_2_column_image_side .omni_side_header {
+  padding-bottom: 40px;
+}
+
+@media (min-width: 568px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
