@@ -174,5 +174,20 @@ class OmniOptions {
 		$output = apply_filters('omni_wp_theme_filter_alignment_options', $choices);
 		return $output;
 	}
+	public static function omni_wp_theme_enable_opt_in() {
+		$choices = array(
+			'enable'    => __('Enable Opt In', OMNI_TXT_DOMAIN)
+		);
+		$output = apply_filters('omni_wp_theme_filter_opt_in_options', $choices);
+		return $output;
+	}
+	public static function omni_wp_theme_opt_in_options() {
+		$choices = array(
+			'zip'    => __('Zip Code Opt In', OMNI_TXT_DOMAIN),
+			'email'  => __('Email Opt In', OMNI_TXT_DOMAIN)
+		);
+		$output = apply_filters('omni_wp_theme_filter_opt_in_options', $choices);
+		return $output;
+	}
 
 }

@@ -139,6 +139,14 @@ class OmniCommon {
 		        return 'No Content';
 	        case 'omni_section_row_2_lookbook':
 		        return self::omni_wp_theme_upload_image('http://www.pdf995.com/samples/pdf.pdf', $post_id);
+//            case 'omni_section_row_1_opt_in_enable':
+//                return false;
+	        case 'omni_section_row_1_opt_in_type':
+		        return '';
+	        case 'omni_section_row_2_opt_in_enable':
+		        return false;
+	        case 'omni_section_row_2_opt_in_type':
+		        return '';
             default:
                 return $default;
         }

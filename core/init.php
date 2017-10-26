@@ -28,6 +28,7 @@ if ( function_exists('omni_require_file') ) {
 
 	// Custom hooks
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniHeaderCustomHook.php');
+	omni_require_file( OMNI_CORE_PATH . 'hook/OmniFooterHook.php');
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniJumbotronHook.php');
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniHomepageSectionHook.php');
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniStructureHook.php');

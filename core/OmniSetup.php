@@ -71,18 +71,6 @@ class OmniSetup {
 		add_filter( 'meta_content', 'prepend_attachment' );
 		add_filter( 'meta_content', 'do_shortcode');
 
-//		function omni_mcs_befroe_init_formats($init_array) {
-//			$style_formats = array(
-//				array(
-//					'title' => 'Custom P class', // Title to show in dropdown
-//					'selector' => 'p', // Element to add class to
-//					'classes' => 'omni_column_content omni_color_gray' // CSS class to add
-//				)
-//			);
-//			$init_array['style_formats'] = json_encode( $style_formats );
-//			return $init_array;
-//		}
-//		add_filter( 'tiny_mce_before_init', 'omni_mcs_befroe_init_formats' );
 		// Add theme support for Custom Logo.
 		add_theme_support( 'custom-logo', array(
 			'size' => 'omni-logo',

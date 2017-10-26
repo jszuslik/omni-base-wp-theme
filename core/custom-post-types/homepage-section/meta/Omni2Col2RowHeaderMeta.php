@@ -12,7 +12,7 @@ class Omni2Col2RowHeaderMeta {
 
 		$this->hp_section_header_meta_groups = array(
 			array(
-				'name'       => __('Section Header', OMNI_TXT_DOMAIN),
+				'name'       => __('', OMNI_TXT_DOMAIN),
 				'fields'     => array(
 					array(
 						'type'         => 'text',
@@ -41,7 +41,7 @@ class Omni2Col2RowHeaderMeta {
 		);
 		$this->hp_section_row_1_meta_groups = array(
 			array(
-				'name'       => __('Row 1', OMNI_TXT_DOMAIN),
+				'name'       => __('', OMNI_TXT_DOMAIN),
 				'fields'     => array(
 					array(
 						'type'         => 'text',
@@ -73,6 +73,24 @@ class Omni2Col2RowHeaderMeta {
 						'description'  => ''
 					),
 					array(
+						'type'         => 'enable_opt_in',
+						'name'         => 'omni_section_row_1_opt_in',
+						'id'           => 'omni_section_row_1_opt_in',
+						'target'       => 'omni_section_row_1_opt_in_type',
+						'choices'      => OmniOptions::omni_wp_theme_enable_opt_in(),
+						'label'        => __('Enable Row 1 Opt In', OMNI_TXT_DOMAIN),
+						'description'  => ''
+					),
+					array(
+						'type'         => 'opt_in_options',
+						'name'         => 'omni_section_row_1_opt_in_type',
+						'id'           => 'omni_section_row_1_opt_in_type',
+						'enabled'      => 'omni_section_row_1_opt_in_enable',
+						'choices'      => OmniOptions::omni_wp_theme_opt_in_options(),
+						'label'        => __('Row 1 Opt In Type', OMNI_TXT_DOMAIN),
+						'description'  => ''
+					),
+					array(
 						'type'         => 'image',
 						'name'         => 'omni_section_row_1_lookbook',
 						'id'           => 'omni_section_row_1_lookbook',
@@ -86,7 +104,7 @@ class Omni2Col2RowHeaderMeta {
 		);
 		$this->hp_section_row_2_meta_groups = array(
 			array(
-				'name'       => __('Row 2', OMNI_TXT_DOMAIN),
+				'name'       => __('', OMNI_TXT_DOMAIN),
 				'fields'     => array(
 					array(
 						'type'         => 'text',
@@ -118,6 +136,24 @@ class Omni2Col2RowHeaderMeta {
 						'description'  => ''
 					),
 					array(
+						'type'         => 'enable_opt_in',
+						'name'         => 'omni_section_row_2_opt_in',
+						'id'           => 'omni_section_row_2_opt_in',
+						'target'       => 'omni_section_row_2_opt_in_type',
+						'choices'      => OmniOptions::omni_wp_theme_enable_opt_in(),
+						'label'        => __('Enable Row 2 Opt In', OMNI_TXT_DOMAIN),
+						'description'  => ''
+					),
+					array(
+						'type'         => 'opt_in_options',
+						'name'         => 'omni_section_row_2_opt_in_type',
+						'id'           => 'omni_section_row_2_opt_in_type',
+						'enabled'      => 'omni_section_row_2_opt_in_enable',
+						'choices'      => OmniOptions::omni_wp_theme_opt_in_options(),
+						'label'        => __('Row 2 Opt In Type', OMNI_TXT_DOMAIN),
+						'description'  => ''
+					),
+					array(
 						'type'         => 'image',
 						'name'         => 'omni_section_row_2_lookbook',
 						'id'           => 'omni_section_row_2_lookbook',
@@ -132,7 +168,9 @@ class Omni2Col2RowHeaderMeta {
 	}
 
 	public function omni_wp_theme_add_meta_boxes() {
-		$post_id = $_GET['post'];
+		$post_id = 0;
+		if(isset($_GET['post']))
+			$post_id = $_GET['post'];
 		$template_slug = get_post_meta($post_id, '_template_type', true);
 		if ('2-column-2-row-with-header' == $template_slug) :
 			add_meta_box(
@@ -189,21 +227,51 @@ class Omni2Col2RowHeaderMeta {
 
 		foreach($this->hp_section_header_meta_groups as $field_group) {
 			foreach($field_group['fields'] as $field) {
-				if (isset($_POST[$field['id']])) {
+				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+					foreach($field['choices'] as $key => $choice) {
+						if(isset($_POST[$field['id']. '_' . $key])) {
+							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+						} else {
+							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+						}
+					}
+				} elseif ('radio' == $field['type']) {
+					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+				} elseif (isset($_POST[$field['id']])) {
 					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}
 		}
 		foreach($this->hp_section_row_1_meta_groups as $field_group) {
 			foreach($field_group['fields'] as $field) {
-				if (isset($_POST[$field['id']])) {
+				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+					foreach($field['choices'] as $key => $choice) {
+						if(isset($_POST[$field['id']. '_' . $key])) {
+							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+						} else {
+							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+						}
+					}
+				} elseif ('radio' == $field['type']) {
+					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+				} elseif (isset($_POST[$field['id']])) {
 					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}
 		}
 		foreach($this->hp_section_row_2_meta_groups as $field_group) {
 			foreach($field_group['fields'] as $field) {
-				if (isset($_POST[$field['id']])) {
+				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+					foreach($field['choices'] as $key => $choice) {
+						if(isset($_POST[$field['id']. '_' . $key])) {
+							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+						} else {
+							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+						}
+					}
+				} elseif ('radio' == $field['type'] || 'opt_in_options' == $field['type']) {
+					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+				} elseif (isset($_POST[$field['id']])) {
 					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}

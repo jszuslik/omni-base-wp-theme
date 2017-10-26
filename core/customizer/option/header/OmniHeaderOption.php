@@ -130,7 +130,7 @@ class OmniHeaderOption {
 				)
 			)
 		);
-		// Branding Background Color
+		// Branding Link Color
 		$wp_customize->add_setting( 'theme_options[branding_link_color]',
 			array(
 				'default'           => $this->default['branding_link_color'],

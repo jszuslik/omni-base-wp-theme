@@ -17,9 +17,9 @@ class OmniDefault {
 		$defaults['branding_bg_color']            = '#000';
 		$defaults['branding_link_color']          = '#fff';
 		$defaults['branding_pad_top']             = 0;
-		$defaults['branding_pad_right']             = 0;
-		$defaults['branding_pad_bottom']             = 0;
-		$defaults['branding_pad_left']             = 0;
+		$defaults['branding_pad_right']           = 0;
+		$defaults['branding_pad_bottom']          = 0;
+		$defaults['branding_pad_left']            = 0;
 		$defaults['show_title']                   = true;
 		$defaults['show_tagline']                 = true;
 		$defaults['show_ticker']                  = true;
@@ -47,7 +47,15 @@ class OmniDefault {
 		$defaults['hp_section_bg_color']          = '-primary';
 		$defaults['homepage_sections']            = array( 'call-to-action', 'news-and-events', 'latest-news' );
 
-		$defaults['footer_menu_alignment']        = 'inline';
+		$defaults['footer_bg_width']              = 'container-fluid';
+		$defaults['footer_content_width']         = 'container';
+		$defaults['footer_bg_color_select']       = '-primary';
+		$defaults['footer_bg_image_upload']       = '';
+		$defaults['footer_bg_color']              = '#000';
+		$defaults['footer_text_color']            = '#fff';
+		$defaults['show_social_in_footer']        = false;
+		$defaults['footer_copyright']             = '';
+
 
 
 		// Pass through filter.

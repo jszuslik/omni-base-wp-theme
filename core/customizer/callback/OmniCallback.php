@@ -39,8 +39,24 @@ class OmniCallback {
 		}
 	}
 
+	public static function omni_wp_theme_is_footer_bg_image( $control ) {
+		if ( $control->manager->get_setting( 'theme_options[footer_bg_color_select]' )->value() === '-custom-image') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public static function omni_wp_theme_is_branding_bg_color( $control ) {
 		if ( $control->manager->get_setting( 'theme_options[branding_bg_color_select]' )->value() === '-custom-color') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static function omni_wp_theme_is_footer_bg_color( $control ) {
+		if ( $control->manager->get_setting( 'theme_options[footer_bg_color_select]' )->value() === '-custom-color') {
 			return true;
 		} else {
 			return false;

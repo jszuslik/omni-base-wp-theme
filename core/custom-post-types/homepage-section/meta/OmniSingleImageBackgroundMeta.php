@@ -3,71 +3,77 @@
 class OmniSingleImageBackgroundMeta {
 
 	private $hp_section_meta_groups;
+	private $template_slug;
 
 	public function __construct() {
-		add_action( 'add_meta_boxes', array($this, 'omni_wp_theme_add_meta_boxes') );
-		add_action('save_post', array( $this, 'omni_wp_theme_save_meta_data' ) );
-		add_action('admin_print_styles', array( $this, 'omni_wp_theme_meta_image_enqueue'));
+		$post_id = 0;
+		if(isset($_GET['post'])) {
+			$post_id = $_GET['post'];
+			$this->template_slug = get_post_meta($post_id, '_template_type', true);
+		} else {
+			$this->template_slug;
+		}
+		if ('single-image-background' == $this->template_slug) :
+			add_action( 'add_meta_boxes', array($this, 'omni_wp_theme_add_meta_boxes') );
+			add_action('save_post', array( $this, 'omni_wp_theme_save_meta_data' ) );
+			add_action('admin_print_styles', array( $this, 'omni_wp_theme_meta_image_enqueue'));
 
-		$this->hp_section_meta_groups = array(
-			array(
-				'name'       => __('', OMNI_TXT_DOMAIN),
-				'fields'     => array(
-					array(
-						'type'         => 'text',
-						'name'         => 'omni_section_id',
-						'id'           => 'omni_section_id',
-						'label'        => __('Section ID', OMNI_TXT_DOMAIN),
-						'description'  => 'This is used for one page navigation'
-					),
-					array(
-						'type'         => 'text',
-						'name'         => 'omni_section_header',
-						'id'           => 'omni_section_header',
-						'label'        => __('Section Header', OMNI_TXT_DOMAIN),
-						'description'  => ''
-					),
-					array(
-						'type'         => 'text',
-						'name'         => 'omni_section_sub_header',
-						'id'           => 'omni_section_sub_header',
-						'label'        => __('Section Sub Header', OMNI_TXT_DOMAIN),
-						'description'  => ''
-					),
-					array(
-						'type'         => 'textarea',
-						'name'         => 'omni_section_content',
-						'id'           => 'omni_section_content',
-						'label'        => __('Section Content', OMNI_TXT_DOMAIN),
-						'description'  => ''
-					),
-					array(
-						'type'         => 'image',
-						'name'         => 'omni_section_background_image',
-						'id'           => 'omni_section_background_image',
-						'btn_id'       => 'omni_section_btn_background_image',
-						'label'        => __('Section Background Image', OMNI_TXT_DOMAIN),
-						'description'  => ''
-					),
+			$this->hp_section_meta_groups = array(
+				array(
+					'name'       => __('', OMNI_TXT_DOMAIN),
+					'fields'     => array(
+						array(
+							'type'         => 'text',
+							'name'         => 'omni_section_id',
+							'id'           => 'omni_section_id',
+							'label'        => __('Section ID', OMNI_TXT_DOMAIN),
+							'description'  => 'This is used for one page navigation'
+						),
+						array(
+							'type'         => 'text',
+							'name'         => 'omni_section_header',
+							'id'           => 'omni_section_header',
+							'label'        => __('Section Header', OMNI_TXT_DOMAIN),
+							'description'  => ''
+						),
+						array(
+							'type'         => 'text',
+							'name'         => 'omni_section_sub_header',
+							'id'           => 'omni_section_sub_header',
+							'label'        => __('Section Sub Header', OMNI_TXT_DOMAIN),
+							'description'  => ''
+						),
+						array(
+							'type'         => 'textarea',
+							'name'         => 'omni_section_content',
+							'id'           => 'omni_section_content',
+							'label'        => __('Section Content', OMNI_TXT_DOMAIN),
+							'description'  => ''
+						),
+						array(
+							'type'         => 'image',
+							'name'         => 'omni_section_background_image',
+							'id'           => 'omni_section_background_image',
+							'btn_id'       => 'omni_section_btn_background_image',
+							'label'        => __('Section Background Image', OMNI_TXT_DOMAIN),
+							'description'  => ''
+						),
+					)
 				)
-			)
-		);
+			);
+		endif;
 
 	}
 
 	public function omni_wp_theme_add_meta_boxes() {
-		$post_id = $_GET['post'];
-		$template_slug = get_post_meta($post_id, '_template_type', true);
-		if ('single-image-background' == $template_slug) :
-			add_meta_box(
-				'omni_hp_single_image_bg_template',
-				__('Section Settings', OMNI_TXT_DOMAIN),
-				array($this, 'omni_wp_theme_render_meta_box'),
-				'homepage_section',
-				'normal',
-				'default'
-			);
-		endif;
+		add_meta_box(
+			'omni_hp_single_image_bg_template',
+			__('Section Settings', OMNI_TXT_DOMAIN),
+			array($this, 'omni_wp_theme_render_meta_box'),
+			'homepage_section',
+			'normal',
+			'default'
+		);
 	}
 
 	public function omni_wp_theme_render_meta_box($post) {

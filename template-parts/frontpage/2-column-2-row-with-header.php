@@ -7,24 +7,28 @@ $post_id = $post->ID;
 $section_light_box_group_id = '2-column-2-row-w-header-lightbox-group';
 $section_meta = get_post_meta($post_id);
 $section_fields = array(
-	'omni_section_id'               => 'omni_section_id',
-	'omni_section_content_width'    => 'omni_section_content_width',
-	'omni_section_header'           => 'omni_section_header',
-	'omni_section_row_1_header'     => 'omni_section_row_1_header',
-	'omni_section_row_1_content'    => 'omni_section_row_1_content',
-	'omni_section_row_1_image'      => array(
+	'omni_section_id'                => 'omni_section_id',
+	'omni_section_content_width'     => 'omni_section_content_width',
+	'omni_section_header'            => 'omni_section_header',
+	'omni_section_row_1_header'      => 'omni_section_row_1_header',
+	'omni_section_row_1_content'     => 'omni_section_row_1_content',
+	'omni_section_row_1_image'       => array(
 		'height' => 335,
 		'width'  => 480
 	),
-	'omni_section_row_1_link_text'  => 'omni_section_row_1_link_text',
-	'omni_section_row_1_lookbook'   => 'omni_section_row_1_lookbook',
-	'omni_section_row_2_header'     => 'omni_section_row_2_header',
-	'omni_section_row_2_content'    => 'omni_section_row_2_content',
-	'omni_section_row_2_image'      => array(
+	'omni_section_row_1_link_text'     => 'omni_section_row_1_link_text',
+	'omni_section_row_1_opt_in_enable' => 'omni_section_row_1_opt_in_enable',
+	'omni_section_row_1_opt_in_type'   => 'omni_section_row_1_opt_in_type',
+	'omni_section_row_1_lookbook'      => 'omni_section_row_1_lookbook',
+	'omni_section_row_2_header'        => 'omni_section_row_2_header',
+	'omni_section_row_2_content'       => 'omni_section_row_2_content',
+	'omni_section_row_2_image'         => array(
 		'height' => 335,
 		'width'  => 480
 	),
 	'omni_section_row_2_link_text'  => 'omni_section_row_2_link_text',
+	'omni_section_row_2_opt_in_enable' => 'omni_section_row_2_opt_in_enable',
+	'omni_section_row_2_opt_in_type'   => 'omni_section_row_2_opt_in_type',
 	'omni_section_row_2_lookbook'   => 'omni_section_row_2_lookbook'
 
 );
@@ -63,7 +67,17 @@ for($i = 0; $i < count($section_header_array); $i++) {
                         <div class="omni_row_content_inner_wrapper">
                             <h5 class="omni_side_header omni_color_dark_gray"><?php echo $valid_section_meta['omni_section_row_1_header'][0]; ?></h5>
                             <p class="omni_column_content omni_color_gray"><?php echo $valid_section_meta['omni_section_row_1_content'][0]; ?></p>
-                            <a href="<?php echo $valid_section_meta['omni_section_row_1_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a>
+                            <?php
+
+                                if($valid_section_meta['omni_section_row_1_opt_in_enable'][0]) :
+	                                ?>
+                                    <a href="javascript:void(0)" target="_blank" class="omni_btn_light" data-toggle="modal" data-target="#row_1_modal"><?php echo
+                                        $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a> <?php
+                                else :
+                                    ?> <a href="<?php echo $valid_section_meta['omni_section_row_1_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a> <?php
+                                endif;
+                            ?>
+
                         </div>
                     </div>
 				</div>
@@ -78,7 +92,16 @@ for($i = 0; $i < count($section_header_array); $i++) {
                         <div class="omni_row_content_inner_wrapper">
                             <h5 class="omni_side_header omni_color_dark_gray"><?php echo $valid_section_meta['omni_section_row_2_header'][0]; ?></h5>
                             <p class="omni_column_content omni_color_gray"><?php echo $valid_section_meta['omni_section_row_2_content'][0]; ?></p>
-                            <a href="<?php echo $valid_section_meta['omni_section_row_2_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a>
+	                        <?php
+
+	                        if($valid_section_meta['omni_section_row_2_opt_in_enable'][0]) :
+		                        ?>
+                                <a href="javascript:void(0)" target="_blank" class="omni_btn_light" data-toggle="modal" data-target="#row_2_modal"><?php echo
+			                        $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a> <?php
+	                        else :
+		                        ?> <a href="<?php echo $valid_section_meta['omni_section_row_2_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a> <?php
+	                        endif;
+	                        ?>
                         </div>
                     </div>
 				</div>
@@ -91,3 +114,46 @@ for($i = 0; $i < count($section_header_array); $i++) {
 		</div>
 	</div>
 </section>
+
+<?php if($valid_section_meta['omni_section_row_1_opt_in_enable'][0]) : ?>
+<div class="modal fade" id="row_1_modal" tabindex="-1" role="dialog" aria-labelledby="row_1_modal_label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="modal fade" id="row_2_modal" tabindex="-1" role="dialog" aria-labelledby="row_2_modal_label"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,4 +44,31 @@ jQuery(document).ready(function($){
         meta_image_frame.open();
     });
 
+    $('[name^=omni_section_row_1_opt_in_]').change(function() {
+        var target_str = $(this).data('target');
+        var target = $(target_str);
+        if(this.checked){
+            if(target.hasClass('hidden')) {
+                target.removeClass('hidden');
+            }
+        } else {
+            if(!target.hasClass('hidden')) {
+                target.addClass('hidden');
+            }
+        }
+    });
+    $('[name^=omni_section_row_2_opt_in_]').change(function() {
+        var target_str = $(this).data('target');
+        var target = $(target_str);
+        if(this.checked){
+            if(target.hasClass('hidden')) {
+                target.removeClass('hidden');
+            }
+        } else {
+            if(!target.hasClass('hidden')) {
+                target.addClass('hidden');
+            }
+        }
+    });
+
 });
