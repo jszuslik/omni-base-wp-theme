@@ -139,12 +139,12 @@ class OmniCommon {
 		        return 'No Content';
 	        case 'omni_section_row_2_lookbook':
 		        return self::omni_wp_theme_upload_image('http://www.pdf995.com/samples/pdf.pdf', $post_id);
-//            case 'omni_section_row_1_opt_in_enable':
-//                return false;
+            case 'omni_section_row_1_opt_in_enable':
+                return '';
 	        case 'omni_section_row_1_opt_in_type':
 		        return '';
 	        case 'omni_section_row_2_opt_in_enable':
-		        return false;
+		        return '';
 	        case 'omni_section_row_2_opt_in_type':
 		        return '';
             default:
@@ -175,6 +175,18 @@ class OmniCommon {
 		    }
 	    }
 	    return $image;
+    }
+
+    public static function omni_wp_theme_create_download_link() {
+
+        $valid_period = 60 * 1;
+        $expiry = current_time('timestamp', 1) + $valid_period;
+        $url = site_url('/wp-content/uploads/2017/10/httpwww-4.pdf995.comsamplespdf-4.pdf');
+	    $url = add_query_arg( 'valid', $expiry, $url );
+	    $nonce_url = wp_nonce_url($url, 'download_link_uid_' . $expiry, 'download');
+
+	    return $nonce_url;
+
     }
 
 }

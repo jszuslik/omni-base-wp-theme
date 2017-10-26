@@ -126,7 +126,7 @@ for($i = 0; $i < count($section_header_array); $i++) {
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <?php echo OmniCommon::omni_wp_theme_create_download_link(); ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
