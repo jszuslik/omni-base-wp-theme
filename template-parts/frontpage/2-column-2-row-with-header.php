@@ -115,45 +115,27 @@ for($i = 0; $i < count($section_header_array); $i++) {
 	</div>
 </section>
 
-<?php if($valid_section_meta['omni_section_row_1_opt_in_enable'][0]) : ?>
-<div class="modal fade" id="row_1_modal" tabindex="-1" role="dialog" aria-labelledby="row_1_modal_label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php echo OmniCommon::omni_wp_theme_create_download_link(); ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
+<?php if($valid_section_meta['omni_section_row_1_opt_in_enable'][0]) :
 
-<div class="modal fade" id="row_2_modal" tabindex="-1" role="dialog" aria-labelledby="row_2_modal_label"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+    switch ($valid_section_meta['omni_section_row_1_opt_in_type'][0]) {
+        case 'zip':
+	        OmniCommon::omni_wp_theme_render_zip_code_form($post_id, 'omni_section_row_1_lookbook', 'row_1_modal');
+            break;
+	    case 'email':
+		    OmniCommon::omni_wp_theme_render_email_form($post_id, 'omni_section_row_1_lookbook', 'row_1_modal');
+		    break;
+    }
+
+endif; ?>
+<?php if($valid_section_meta['omni_section_row_2_opt_in_enable'][0]) :
+
+	switch ($valid_section_meta['omni_section_row_2_opt_in_type'][0]) {
+		case 'zip':
+			OmniCommon::omni_wp_theme_render_zip_code_form($post_id, 'omni_section_row_2_lookbook', 'row_2_modal');
+			break;
+		case 'email':
+			OmniCommon::omni_wp_theme_render_email_form($post_id, 'omni_section_row_2_lookbook', 'row_2_modal');
+			break;
+	}
+
+endif; ?>

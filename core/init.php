@@ -25,6 +25,10 @@ if ( function_exists('omni_require_file') ) {
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/OmniSingleImageBackgroundMeta.php');
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/Omni2ColumnImageSideMeta.php');
 	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/Omni2Col2RowHeaderMeta.php');
+	omni_require_file( OMNI_CORE_PATH . 'custom-post-types/homepage-section/meta/OmniPressRoomMeta.php');
+	omni_require_file( OMNI_CORE_PATH . 'opt-in-form/database/OmniOptInFormSetup.php');
+	omni_require_file( OMNI_CORE_PATH . 'opt-in-form/OmniOptInFormEntries.php');
+	omni_require_file( OMNI_CORE_PATH . 'opt-in-form/settings/OmniOptInFormSettings.php');
 
 	// Custom hooks
 	omni_require_file( OMNI_CORE_PATH . 'hook/OmniHeaderCustomHook.php');

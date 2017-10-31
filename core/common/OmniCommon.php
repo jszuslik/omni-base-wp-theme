@@ -5,25 +5,12 @@ define('ALLOW_UNFILTERED_UPLOADS', true);
 class OmniCommon {
 
     public function __construct() {
-        add_action( 'wp_footer', array($this, 'omni_wp_theme_add_fancybox_script_to_footer'));
+	    add_action( 'wp_ajax_nopriv_omni_wp_theme_record_zip_code', array($this, 'omni_wp_theme_record_zip_code') );
+	    add_action( 'wp_ajax_omni_wp_theme_record_zip_code', array($this, 'omni_wp_theme_record_zip_code') );
+	    add_action( 'wp_ajax_nopriv_omni_wp_theme_record_email', array($this, 'omni_wp_theme_record_email') );
+	    add_action( 'wp_ajax_omni_wp_theme_record_email', array($this, 'omni_wp_theme_record_email') );
+	    add_action( 'wp_enqueue_scripts', array($this, 'omni_wp_theme_localize_custom_script') );
     }
-
-
-	public function omni_wp_theme_add_fancybox_script_to_footer() { ?>
-        <script>
-            $(document).ready(function() {
-                $(".omni-fancybox-button").fancybox({
-                    prevEffect		: 'none',
-                    nextEffect		: 'none',
-                    closeBtn		: false,
-                    helpers		: {
-                        title	: { type : 'inside' },
-                        buttons	: {}
-                    }
-                });
-            });
-        </script>
-    <?php }
 
 	public static function omni_wp_theme_get_new_ticker_content() {
 		$tickers = self::omni_wp_theme_news_ticker_details();
@@ -177,16 +164,173 @@ class OmniCommon {
 	    return $image;
     }
 
-    public static function omni_wp_theme_create_download_link() {
+    public static function omni_wp_theme_setup_dispatch_file($link) {
 
-        $valid_period = 60 * 1;
-        $expiry = current_time('timestamp', 1) + $valid_period;
-        $url = site_url('/wp-content/uploads/2017/10/httpwww-4.pdf995.comsamplespdf-4.pdf');
-	    $url = add_query_arg( 'valid', $expiry, $url );
-	    $nonce_url = wp_nonce_url($url, 'download_link_uid_' . $expiry, 'download');
-
-	    return $nonce_url;
+        $file = path_join(WP_CONTENT_DIR, ltrim(substr($link, strlen(WP_CONTENT_URL)), '/'));
+        self::omni_wp_theme_dispatch_file($file);
 
     }
 
+    private static function omni_wp_theme_dispatch_file($file) {
+	    if (headers_sent()) {
+		    trigger_error(__FUNCTION__ . ": Cannot dispatch file $file, headers already sent.");
+		    return;
+	    }
+
+	    if (!is_readable($file)) {
+		    trigger_error(__FUNCTION__ . ": Cannot dispatch file $file, file is not readable.");
+		    return;
+	    }
+
+	    header('Content-Description: File Transfer');
+	    header('Content-Type: application/octet-stream'); // http://stackoverflow.com/a/20509354
+	    header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+	    header('Expires: 0');
+	    header('Cache-Control: must-revalidate');
+	    header('Pragma: public');
+	    header('Content-Length: ' . filesize($file));
+
+	    ob_end_clean();
+	    readfile($file);
+	    exit;
+    }
+
+    public static function omni_wp_theme_render_zip_code_form($post_id, $meta_id, $row_id) {
+        ?>
+        <div class="modal fade" id="<?php echo $row_id; ?>" tabindex="-1" role="dialog"
+             aria-labelledby="row_1_modal_label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Please Enter Your Zip Code</h5>
+                        <form id="omni_zip_form" class="omni_zip_form">
+                            <input type="hidden" id="<?php echo $row_id; ?>_omni_zip_post_id" class="omni_form_zip_post_id" value="<?php echo
+                            $post_id; ?>">
+                            <input type="hidden" id="<?php echo $row_id; ?>_omni_zip_meta_id" class="omni_form_zip_meta_id" value="<?php echo
+                            $meta_id; ?>">
+                            <div class="input">
+                                <input type="text" class="omni_form_zip" pattern="(\d{5}([\-]\d{4})?)" id="<?php echo $row_id; ?>_zip_code" placeholder="Enter Your Zip Code - 55555-xxxx" required>
+                                <label for="zip_code"></label>
+                            </div>
+                            <button type="submit" class="omni_modal_button">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<?php
+    }
+
+	public static function omni_wp_theme_render_email_form($post_id, $meta_id, $row_id) {
+		?>
+        <div class="modal fade" id="<?php echo $row_id; ?>" tabindex="-1" role="dialog" aria-labelledby="row_2_modal_label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Please Enter Your Email Address</h5>
+                        <form id="omni_email_form" class="omni_email_form">
+                            <input type="hidden" id="<?php echo $row_id; ?>_omni_email_post_id" class="omni_form_email_post_id" value="<?php
+                            echo
+                            $post_id; ?>">
+                            <input type="hidden" id="<?php echo $row_id; ?>_omni_email_meta_id" class="omni_form_email_meta_id" value="<?php
+                            echo
+                            $meta_id; ?>">
+                            <div class="input">
+                                <input type="email" class="omni_form_email" id="<?php echo $row_id; ?>_omni_email" placeholder="Enter Your Email Address" required>
+                                <label for="omni_email"></label>
+                            </div>
+                            <button type="submit" class="omni_modal_button">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<?php
+	}
+
+    public static function omni_wp_theme_record_zip_code() {
+
+        $data = array(
+	        'post_id'    => filter_var($_POST['post_id'], FILTER_SANITIZE_STRING),
+	        'meta_id'    => filter_var($_POST['meta_id'], FILTER_SANITIZE_STRING),
+	        'value'      => filter_var($_POST['zip_code'], FILTER_SANITIZE_EMAIL),
+	        'type'       => filter_var('zip_code', FILTER_SANITIZE_STRING),
+            'ip_address' => self::omni_wp_theme_get_real_ip_addr(),
+            'time'       => date('Y-m-d H:i:s', time())
+        );
+
+        $response_msg = 'Thanks for your submission';
+
+        if(!OmniOptInFormEntries::omni_wp_theme_add_opt_in_entry($data)) {
+	        $response_msg = 'There was an error with your submission';
+        }
+
+	    $link = get_post_meta($data['post_id'], $data['meta_id'], true);
+        $response = json_encode(
+                array(
+                    'url' => $link,
+                    'file' => path_join(WP_CONTENT_DIR, ltrim(substr($link, strlen(WP_CONTENT_URL)), '/')),
+                    'thanks' => $response_msg
+                )
+        );
+        echo $response;
+	    die();
+    }
+
+	public static function omni_wp_theme_record_email() {
+
+		$data = array(
+			'post_id'    => filter_var($_POST['post_id'], FILTER_SANITIZE_STRING),
+			'meta_id'    => filter_var($_POST['meta_id'], FILTER_SANITIZE_STRING),
+			'value'      => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
+			'type'       => filter_var('email', FILTER_SANITIZE_STRING),
+			'ip_address' => self::omni_wp_theme_get_real_ip_addr(),
+			'time'       => date('Y-m-d H:i:s', time())
+		);
+
+		$response_msg = 'Thanks for your submission';
+
+		if(!OmniOptInFormEntries::omni_wp_theme_add_opt_in_entry($data)) {
+			$response_msg = 'There was an error with your submission';
+		}
+
+		$link = get_post_meta($data['post_id'], $data['meta_id'], true);
+		$response = json_encode(
+			array(
+				'url' => $link,
+				'file' => path_join(WP_CONTENT_DIR, ltrim(substr($link, strlen(WP_CONTENT_URL)), '/')),
+				'thanks' => $response_msg
+			)
+		);
+		echo $response;
+		die();
+	}
+
+    public function omni_wp_theme_localize_custom_script() {
+	    wp_enqueue_script( 'omni-forms-script',get_template_directory_uri() . '/admin/js/form-ajax.js', array('jquery'), false, true  );
+
+	    wp_localize_script( 'omni-forms-script', 'omni_custom_ajax', array(
+		    'ajax_url' => admin_url('admin-ajax.php')
+	    ));
+    }
+
+    public static function omni_wp_theme_get_real_ip_addr() {
+	    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		    $ip=$_SERVER['HTTP_CLIENT_IP'];
+	    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		    $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+	    } else {
+		    $ip=$_SERVER['REMOTE_ADDR'];
+	    }
+	    return $ip;
+    }
+
+
 }
+$omni_common = new OmniCommon();

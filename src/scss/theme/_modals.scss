@@ -1,0 +1,130 @@
+$onyx: #1b1b1b;
+$cosmiclatte: #FFFCE8;
+
+.modal {
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    max-width: 390px;
+    .close {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 0;
+
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: $cosmiclatte;
+      text-shadow: 0 1px 0 $cosmiclatte;
+      opacity: .5;
+    }
+    .modal-title {
+      font-family: 'Roboto', sans-serif;
+      color: $cosmiclatte;
+      font-size: 14px;
+      font-weight: 300;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 0 0 15px;
+    }
+    .modal-content {
+      background: $onyx;
+      border-radius: 2px;
+    }
+    .input {
+      display: flex;
+      flex-direction: row-reverse;
+      border-bottom: 1px solid rgba($cosmiclatte, .1);
+      padding-bottom: 3px;
+      margin: 0 20px 20px;
+
+      input {
+        // General styles
+        outline: none;
+        border: 0;
+        color: $cosmiclatte;
+        background: transparent;
+        font-family: 'Roboto', sans-serif;
+        flex: 1 0 auto;
+        font-size: 14px;
+        font-weight: 300;
+        height: 30px;
+        padding: 0 15px;
+
+        // Animation triggers
+        &:focus ~ label {
+          opacity: 1;
+        }
+
+        &[type='text'] {
+          ~ label {
+            &::before {
+              content: "\f135";
+            }
+          }
+        }
+        &[type='email'] {
+          ~ label {
+            &::before {
+              content: "\f1fa";
+            }
+          }
+        }
+      }
+      label {
+        font-family: FontAwesome;
+        font-size: 13px;
+        opacity: .1;
+        transition: opacity .5s ease;
+
+        &::before {
+          align-items: center;
+          color: $cosmiclatte;
+          display: flex;
+          height: 30px;
+          justify-content: center;
+          width: 30px;
+        }
+      }
+    }
+    .omni_modal_button {
+      cursor: pointer;
+      display: block;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Roboto', serif;
+      color: $cosmiclatte;
+      background-color: transparent;
+      border: 1px solid $cosmiclatte;
+      letter-spacing: 1.5px;
+      -moz-transition: all 0.4s ease-out 0s;
+      -webkit-transition: all 0.4s ease-out 0s;
+      transition: all 0.4s ease-out 0s;
+      text-align: center;
+      padding: 15px 50px;
+      margin: 0 auto;
+
+      &:hover {
+        color: $onyx;
+        background-color: $cosmiclatte;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 568px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}

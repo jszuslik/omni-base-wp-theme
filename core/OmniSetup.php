@@ -138,7 +138,7 @@ class OmniSetup {
 	public function omni_scripts() {
 		wp_enqueue_style( 'omni-style', get_stylesheet_uri() );
 		if ($this->production) {
-			wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.min.js', array('jquery'), false, true);
+			wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.min.js', array('jquery'), false, false);
 		} else {
 			wp_enqueue_script('omni-script', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), false, true);
 		}
