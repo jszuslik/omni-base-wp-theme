@@ -5,7 +5,7 @@ class OmniOptInFormSetup {
 	private $omni_opt_in_version;
 
 	public function __construct() {
-		$this->omni_opt_in_version = '2.0';
+		$this->omni_opt_in_version = '2.1';
 		add_action('after_setup_theme', array($this, 'omni_wp_theme_opt_in_upgrade_check'));
 	}
 

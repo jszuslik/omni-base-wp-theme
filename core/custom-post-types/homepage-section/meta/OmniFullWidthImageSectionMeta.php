@@ -35,7 +35,9 @@ class OmniFullWidthImageSectionMeta {
 	}
 
 	public function omni_wp_theme_add_meta_boxes() {
-		$post_id = $_GET['post'];
+		$post_id = 0;
+		if(isset($_GET['post']))
+			$post_id = $_GET['post'];
 		$template_slug = get_post_meta($post_id, '_template_type', true);
 		if ('full-width-image-section' == $template_slug) :
 			add_meta_box(

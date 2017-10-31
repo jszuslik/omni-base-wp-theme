@@ -7,6 +7,7 @@ class OmniDefault {
 		$defaults = array();
 
 		// Header.
+		$defaults['fixed_header']                 = false;
 		$defaults['primary_menu_alignment']       = 'under';
 		$defaults['primary_menu_width']           = 'container';
 		$defaults['branding_bg_width']            = 'container-fluid';

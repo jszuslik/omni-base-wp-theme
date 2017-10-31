@@ -138,11 +138,6 @@ class OmniOptInFormSettings {
         </div>
 	<?php }
 
-//$wpdb->query("SELECT * INTO OUTFILE '/path/to/file'
-// FIELDS TERMINATED BY '\t'
-// LINES TERMINATED BY '\n'
-// FROM tracking");
-
 	private function omni_wp_theme_get_opt_in_results() {
 		global $wpdb;
 		$table_name = $table_name = $wpdb->prefix . 'omni_opt_in';

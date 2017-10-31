@@ -1,7 +1,6 @@
 <?php
 
-class OmniPressRoomMeta {
-
+class OmniVendorsSectionMeta {
 	private $hp_section_meta_group;
 
 	public function __construct() {
@@ -9,6 +8,7 @@ class OmniPressRoomMeta {
 		add_action('save_post', array( $this, 'omni_wp_theme_save_meta_data' ) );
 		add_action( 'wp_ajax_nopriv_omni_wp_theme_ajax_get_feed', array($this, 'omni_wp_theme_ajax_get_feed') );
 		add_action( 'wp_ajax_omni_wp_theme_ajax_get_feed', array($this, 'omni_wp_theme_ajax_get_feed') );
+		add_action('omni_wp_theme_action_display_vendor', array($this, 'omni_wp_theme_display_vendor_hook'), 10 );
 
 		$this->hp_section_meta_group = array(
 			array(
@@ -36,13 +36,6 @@ class OmniPressRoomMeta {
 						'label'        => __('Section Header', OMNI_TXT_DOMAIN),
 						'description'  => ''
 					),
-					array(
-						'type'         => 'text',
-						'name'         => 'omni_section_feed_url',
-						'id'           => 'omni_section_feed_url',
-						'label'        => __('Post Feed URL', OMNI_TXT_DOMAIN),
-						'description'  => ''
-					),
 				)
 			)
 		);
@@ -53,7 +46,7 @@ class OmniPressRoomMeta {
 		if(isset($_GET['post']))
 			$post_id = $_GET['post'];
 		$template_slug = get_post_meta($post_id, '_template_type', true);
-		if ('press-room' == $template_slug) :
+		if ('omni-vendors' == $template_slug) :
 			add_meta_box(
 				'omni_hp_press_room_section_template',
 				__('Header Settings', OMNI_TXT_DOMAIN),
@@ -99,5 +92,59 @@ class OmniPressRoomMeta {
 		}
 	}
 
+	public function omni_wp_theme_display_vendor_hook() {
+		$args = array(
+			'post_type'      => 'vendors',
+			'posts_per_page' => -1
+		);
+		$vendors = get_posts($args);
+		$info = 'No Vendors';
+
+		if(0 < count($vendors)) :
+			foreach ($vendors as $vendor) :
+				$vendor_meta = get_post_meta($vendor->ID);
+				$info = '<div class="col-6 col-sm-4">';
+				$state = null;
+				if(isset($vendor_meta['omni_vendor_state'])) {
+					$state = $vendor_meta['omni_vendor_state'][0];
+					$info .= '<h4 class="omni_vendor_state_header omni_color_gray">' . $state . '</h4>';
+				}
+
+				if(isset($vendor_meta['omni_vendor_name']) && '' != $vendor_meta['omni_vendor_name'][0])
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">' . $vendor_meta['omni_vendor_name'][0] . '</h5>';
+				if(isset($vendor_meta['omni_vendor_address_1']) && '' != $vendor_meta['omni_vendor_address_1'][0])
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">' . $vendor_meta['omni_vendor_address_1'][0] . '</h5>';
+				if(isset($vendor_meta['omni_vendor_address_2']) && '' != $vendor_meta['omni_vendor_address_2'][0])
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">' . $vendor_meta['omni_vendor_address_2'][0] . '</h5>';
+				if(isset($vendor_meta['omni_vendor_city']) && '' != $vendor_meta['omni_vendor_city'][0]) {
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">' . $vendor_meta['omni_vendor_city'][0];
+					if($state != null) {
+						$info .= ', ' . $state;
+					}
+
+					if(isset($vendor_meta['omni_vendor_zip'])) {
+						$info .= ' ' . $vendor_meta['omni_vendor_zip'][0];
+					}
+
+					$info .= '</h5>';
+				}
+
+				if(isset($vendor_meta['omni_vendor_phone']) && '' != $vendor_meta['omni_vendor_phone'][0]) {
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">Phone: ' . $vendor_meta['omni_vendor_phone'][0] . '</h5>';
+				}
+				if(isset($vendor_meta['omni_vendor_email']) && '' != $vendor_meta['omni_vendor_email'][0]) {
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">Email: ' . $vendor_meta['omni_vendor_email'][0] . '</h5>';
+				}
+				if(isset($vendor_meta['omni_vendor_fax']) && '' != $vendor_meta['omni_vendor_fax'][0]) {
+					$info .= '<h5 class="omni_vendor_content omni_color_gray">Fax: ' . $vendor_meta['omni_vendor_fax'][0] . '</h5>';
+				}
+
+
+				$info .= '</div>';
+			endforeach;
+		endif;
+
+		echo $info;
+	}
 }
-$omni_press_room_meta = new OmniPressRoomMeta();
+$omni_vendors_section_meta = new OmniVendorsSectionMeta();

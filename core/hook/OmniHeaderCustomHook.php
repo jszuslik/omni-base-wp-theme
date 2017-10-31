@@ -14,10 +14,14 @@ class OmniHeaderCustomHook {
 	<?php }
 
 	public function omni_wp_theme_header_top_content() {
+			if (OmniCore::omni_wp_theme_get_option('fixed_header')) : ?>
+                <div class="fixed-top">
+            <?php endif;
 		$show_ticker = OmniCore::omni_wp_theme_get_option('show_ticker');
 		?>
 		<?php if ( true === $show_ticker ) : ?>
 			<?php $ticker_color = OmniCore::omni_wp_theme_get_option('ticker_color'); ?>
+
 		<div class="tophead ticker<?php echo $ticker_color; ?>">
 			<div class="container">
                 <div class="top-news">

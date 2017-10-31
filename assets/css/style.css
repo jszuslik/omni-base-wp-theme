@@ -11737,6 +11737,15 @@ a.omni_color_white:hover {
 }
 
 @media (min-width: 768px) {
+  .navbar {
+    padding: 50px 0;
+    -moz-transition: all 0.4s ease-out 0s;
+    -webkit-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
+  }
+  .navbar.shrink {
+    padding: 15px 0 10px;
+  }
   #menu-primary-menu {
     display: flex;
     align-items: stretch;
@@ -12644,6 +12653,32 @@ a.omni_color_white:hover {
 .omni_2_col_2_row_header .omni_btn_light {
   text-align: center;
   padding: 15px 30px;
+}
+
+.omni_vendors {
+  padding-bottom: 75px;
+}
+
+.omni_vendor_state_header,
+.omni_vendor_content {
+  font-family: 'Roboto', sans-serif;
+}
+
+.omni_vendor_state_header {
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0 0 20px;
+  margin: 0;
+}
+
+.omni_vendor_content {
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
 }
 
 .omni_press_room {

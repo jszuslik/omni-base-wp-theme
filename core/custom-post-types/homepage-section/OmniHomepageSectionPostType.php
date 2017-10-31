@@ -136,6 +136,13 @@ class OmniHomepageSectionPostType {
 				'title'     => __('Press Room', OMNI_TXT_DOMAIN),
 				'menu_order'  => 8
 			),
+			array(
+				'post_id'   => -1,
+				'author_id' => 1,
+				'slug'      => 'omni-vendors',
+				'title'     => __('Vendors', OMNI_TXT_DOMAIN),
+				'menu_order'  => 9
+			),
 		);
 
 		foreach ($init_posts as $init_post) :

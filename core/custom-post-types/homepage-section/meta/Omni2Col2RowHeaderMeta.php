@@ -216,66 +216,68 @@ class Omni2Col2RowHeaderMeta {
 	}
 
 	public function omni_wp_theme_save_meta_data($post_id) {
-		$is_autosave = wp_is_post_autosave( $post_id );
-		$is_revision = wp_is_post_revision( $post_id );
-		$is_valid_nonce = ( isset( $_POST['omni_hp_section_nonce'] ) && wp_verify_nonce( $_POST['omni_hp_section_nonce'], basename
-			(__FILE__) )	) ?	'true' :	'false';
+		if('homepage_section' == get_post_type($post_id)) :
+			$is_autosave = wp_is_post_autosave( $post_id );
+			$is_revision = wp_is_post_revision( $post_id );
+			$is_valid_nonce = ( isset( $_POST['omni_hp_section_nonce'] ) && wp_verify_nonce( $_POST['omni_hp_section_nonce'], basename
+				(__FILE__) )	) ?	'true' :	'false';
 
-		if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
-			return;
-		}
+			if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+				return;
+			}
 
-		foreach($this->hp_section_header_meta_groups as $field_group) {
-			foreach($field_group['fields'] as $field) {
-				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
-					foreach($field['choices'] as $key => $choice) {
-						if(isset($_POST[$field['id']. '_' . $key])) {
-							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
-						} else {
-							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+			foreach($this->hp_section_header_meta_groups as $field_group) {
+				foreach($field_group['fields'] as $field) {
+					if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+						foreach($field['choices'] as $key => $choice) {
+							if(isset($_POST[$field['id']. '_' . $key])) {
+								update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+							} else {
+								update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+							}
 						}
+					} elseif ('radio' == $field['type']) {
+						update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+					} elseif (isset($_POST[$field['id']])) {
+						update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 					}
-				} elseif ('radio' == $field['type']) {
-					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
-				} elseif (isset($_POST[$field['id']])) {
-					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}
-		}
-		foreach($this->hp_section_row_1_meta_groups as $field_group) {
-			foreach($field_group['fields'] as $field) {
-				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
-					foreach($field['choices'] as $key => $choice) {
-						if(isset($_POST[$field['id']. '_' . $key])) {
-							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
-						} else {
-							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+			foreach($this->hp_section_row_1_meta_groups as $field_group) {
+				foreach($field_group['fields'] as $field) {
+					if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+						foreach($field['choices'] as $key => $choice) {
+							if(isset($_POST[$field['id']. '_' . $key])) {
+								update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+							} else {
+								update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+							}
 						}
+					} elseif ('radio' == $field['type']) {
+						update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+					} elseif (isset($_POST[$field['id']])) {
+						update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 					}
-				} elseif ('radio' == $field['type']) {
-					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
-				} elseif (isset($_POST[$field['id']])) {
-					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}
-		}
-		foreach($this->hp_section_row_2_meta_groups as $field_group) {
-			foreach($field_group['fields'] as $field) {
-				if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
-					foreach($field['choices'] as $key => $choice) {
-						if(isset($_POST[$field['id']. '_' . $key])) {
-							update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
-						} else {
-							update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+			foreach($this->hp_section_row_2_meta_groups as $field_group) {
+				foreach($field_group['fields'] as $field) {
+					if ('check' == $field['type'] || 'enable_opt_in' == $field['type']) {
+						foreach($field['choices'] as $key => $choice) {
+							if(isset($_POST[$field['id']. '_' . $key])) {
+								update_post_meta( $post_id, $field['id']. '_' . $key, $key  );
+							} else {
+								update_post_meta( $post_id, $field['id']. '_' . $key, '' );
+							}
 						}
+					} elseif ('radio' == $field['type'] || 'opt_in_options' == $field['type']) {
+						update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
+					} elseif (isset($_POST[$field['id']])) {
+						update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 					}
-				} elseif ('radio' == $field['type'] || 'opt_in_options' == $field['type']) {
-					update_post_meta( $post_id, $field['id'], sanitize_html_class($_POST[$field['id']] ) );
-				} elseif (isset($_POST[$field['id']])) {
-					update_post_meta( $post_id, $field['id'], sanitize_text_field($_POST[$field['id']] ) );
 				}
 			}
-		}
+		endif;
 	}
 	public function omni_wp_theme_meta_image_enqueue(){
 		wp_enqueue_media();

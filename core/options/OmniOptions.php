@@ -131,6 +131,10 @@ class OmniOptions {
 				'label'    => __( 'Full Width Image Section', OMNI_TXT_DOMAIN ),
 				'template' => 'template-parts/frontpage/full-width-image-section',
 			),
+			'omni-vendors' => array(
+				'label'    => __( 'Vendors', OMNI_TXT_DOMAIN ),
+				'template' => 'template-parts/frontpage/omni-vendors',
+			),
 		);
 		$output = apply_filters( 'omni_wp_theme_filter_home_sections_options', $choices );
 		return $output;
@@ -188,6 +192,66 @@ class OmniOptions {
 		);
 		$output = apply_filters('omni_wp_theme_filter_opt_in_options', $choices);
 		return $output;
+	}
+
+	public static function omni_wp_theme_display_states() {
+		$choices = array(
+			"Alabama"                => __("Alabama", OMNI_TXT_DOMAIN),
+			"Alaska"                 => __("Alaska", OMNI_TXT_DOMAIN),
+			"Arizona"                => __("Arizona", OMNI_TXT_DOMAIN),
+			"Arkansas"               => __("Arkansas", OMNI_TXT_DOMAIN),
+			"California"             => __("California", OMNI_TXT_DOMAIN),
+			"Colorado"               => __("Colorado", OMNI_TXT_DOMAIN),
+			"Connecticut"            => __("Connecticut", OMNI_TXT_DOMAIN),
+			"Delaware"               => __("Delaware", OMNI_TXT_DOMAIN),
+			"District of Columbia"   => __("District of Columbia", OMNI_TXT_DOMAIN),
+			"Florida"                => __("Florida", OMNI_TXT_DOMAIN),
+			"Georgia"                => __("Georgia", OMNI_TXT_DOMAIN),
+			"Hawaii"                 => __("Hawaii", OMNI_TXT_DOMAIN),
+			"Idaho"                  => __("Idaho", OMNI_TXT_DOMAIN),
+			"Illinois"               => __("Illinois", OMNI_TXT_DOMAIN),
+			"Indiana"                => __("Indiana", OMNI_TXT_DOMAIN),
+			"Iowa"                   => __("Iowa", OMNI_TXT_DOMAIN),
+			"Kansas"                 => __("Kansas", OMNI_TXT_DOMAIN),
+			"Kentucky"               => __("Kentucky", OMNI_TXT_DOMAIN),
+			"Louisiana"              => __("Louisiana", OMNI_TXT_DOMAIN),
+			"Maine"                  => __("Maine", OMNI_TXT_DOMAIN),
+			"Maryland"               => __("Maryland", OMNI_TXT_DOMAIN),
+			"Massachusetts"          => __("Massachusetts", OMNI_TXT_DOMAIN),
+			"Michigan"               => __("Michigan", OMNI_TXT_DOMAIN),
+			"Minnesota"              => __("Minnesota", OMNI_TXT_DOMAIN),
+			"Mississippi"            => __("Mississippi", OMNI_TXT_DOMAIN),
+			"Missouri"               => __("Missouri", OMNI_TXT_DOMAIN),
+			"Montana"                => __("Montana", OMNI_TXT_DOMAIN),
+			"Nebraska"               => __("Nebraska", OMNI_TXT_DOMAIN),
+			"Nevada"                 => __("Nevada", OMNI_TXT_DOMAIN),
+			"New Hampshire"          => __("New Hampshire", OMNI_TXT_DOMAIN),
+			"New Jersey"             => __("New Jersey", OMNI_TXT_DOMAIN),
+			"New Mexico"             => __("New Mexico", OMNI_TXT_DOMAIN),
+			"New York"               => __("New York", OMNI_TXT_DOMAIN),
+			"North Carolina"         => __("North Carolina", OMNI_TXT_DOMAIN),
+			"North Dakota"           => __("North Dakota", OMNI_TXT_DOMAIN),
+			"Ohio"                   => __("Ohio", OMNI_TXT_DOMAIN),
+			"Oklahoma"               => __("Oklahoma", OMNI_TXT_DOMAIN),
+			"Oregon"                 => __("Oregon", OMNI_TXT_DOMAIN),
+			"Pennsylvania"           => __("Pennsylvania", OMNI_TXT_DOMAIN),
+			"Rhode Island"           => __("Rhode Island", OMNI_TXT_DOMAIN),
+			"South Carolina"         => __("South Carolina", OMNI_TXT_DOMAIN),
+			"South Dakota"           => __("South Dakota", OMNI_TXT_DOMAIN),
+			"Tennessee"              => __("Tennessee", OMNI_TXT_DOMAIN),
+			"Texas"                  => __("Texas", OMNI_TXT_DOMAIN),
+			"Utah"                   => __("Utah", OMNI_TXT_DOMAIN),
+			"Vermont"                => __("Vermont", OMNI_TXT_DOMAIN),
+			"Virginia"               => __("Virginia", OMNI_TXT_DOMAIN),
+			"Washington"             => __("Washington", OMNI_TXT_DOMAIN),
+			"West Virginia"          => __("West Virginia", OMNI_TXT_DOMAIN),
+			"Wisconsin"              => __("Wisconsin", OMNI_TXT_DOMAIN),
+			"Wyoming"                => __("Wyoming", OMNI_TXT_DOMAIN),
+		);
+
+		$output = apply_filters('omni_wp_theme_filter_display_states', $choices);
+		return $output;
+
 	}
 
 }

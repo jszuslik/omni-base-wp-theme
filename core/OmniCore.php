@@ -214,7 +214,7 @@ class OmniCore {
 						$fields .= '<div id="omni_admin_radio_'. $name . '">';
 						$fields .= '<label>' . $label . '</label><br><small>' . $description . '</small>';
 						foreach ($choices as $key => $choice) {
-							if ( $value[$id.'_'.$key] == $key ) {
+							if ( $value[0] == $key ) {
 								$fields .= '<input type="radio" name="' . $name . '" value="' . $key . '" checked="checked">' . $choice . '<br>';
 							} else {
 								$fields .= '<input type="radio" name="' . $name . '" value="' . $key . '">' . $choice . '<br>';

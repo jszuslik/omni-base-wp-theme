@@ -20,6 +20,22 @@ class OmniHeaderOption {
 				'panel' => 'theme_option_panel'
 			)
 		);
+		// Header Fixed
+		$wp_customize->add_setting( 'theme_options[fixed_header]',
+			array(
+				'default'           => $this->default['fixed_header'],
+				'capability'        => 'edit_theme_options',
+				'sanitize_callback' => array( 'OmniSanitize', 'omni_wp_theme_sanitize_checkbox'),
+			)
+		);
+		$wp_customize->add_control( 'theme_options[fixed_header]',
+			array(
+				'label'    => __( 'Fixed Header', OMNI_TXT_DOMAIN ),
+				'section'  => 'section_header',
+				'type'     => 'checkbox',
+				'priority' => 100,
+			)
+		);
 		// Primary Menu Alignment
 		$wp_customize->add_setting( 'theme_options[primary_menu_alignment]',
 			array(
@@ -149,79 +165,79 @@ class OmniHeaderOption {
 			)
 		);
 
-		//Branding Header Padding Top
-		$wp_customize->add_setting( 'theme_options[branding_pad_top]',
-			array(
-				'default'         => $this->default['branding_pad_top'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => 'absint',
-			)
-		);
-		$wp_customize->add_control(
-			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_top]',
-				 array(
-					 'label'    => __('Branding Header Padding', OMNI_TXT_DOMAIN),
-					 'description' => __('Top', OMNI_TXT_DOMAIN),
-					 'section'  => 'section_header',
-					 'settings' => 'theme_options[branding_pad_top]',
-					 'priority' => 100
-				 )
-			)
-		);
-		//Branding Header Padding Right
-		$wp_customize->add_setting( 'theme_options[branding_pad_right]',
-			array(
-				'default'         => $this->default['branding_pad_right'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => 'absint',
-			)
-		);
-		$wp_customize->add_control(
-			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_right]',
-				 array(
-					 'description' => __('Right', OMNI_TXT_DOMAIN),
-					 'section'  => 'section_header',
-					 'settings' => 'theme_options[branding_pad_right]',
-					 'priority' => 100
-				 )
-			)
-		);
-		//Branding Header Padding Bottom
-		$wp_customize->add_setting( 'theme_options[branding_pad_bottom]',
-			array(
-				'default'         => $this->default['branding_pad_bottom'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => 'absint',
-			)
-		);
-		$wp_customize->add_control(
-			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_bottom]',
-				 array(
-					 'description' => __('Bottom', OMNI_TXT_DOMAIN),
-					 'section'  => 'section_header',
-					 'settings' => 'theme_options[branding_pad_bottom]',
-					 'priority' => 100
-				 )
-			)
-		);
-		//Branding Header Padding Left
-		$wp_customize->add_setting( 'theme_options[branding_pad_left]',
-			array(
-				'default'         => $this->default['branding_pad_left'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => 'absint',
-			)
-		);
-		$wp_customize->add_control(
-			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_left]',
-				 array(
-					 'description' => __('Left', OMNI_TXT_DOMAIN),
-					 'section'  => 'section_header',
-					 'settings' => 'theme_options[branding_pad_left]',
-					 'priority' => 100
-				 )
-			)
-		);
+//		//Branding Header Padding Top
+//		$wp_customize->add_setting( 'theme_options[branding_pad_top]',
+//			array(
+//				'default'         => $this->default['branding_pad_top'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => 'absint',
+//			)
+//		);
+//		$wp_customize->add_control(
+//			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_top]',
+//				 array(
+//					 'label'    => __('Branding Header Padding', OMNI_TXT_DOMAIN),
+//					 'description' => __('Top', OMNI_TXT_DOMAIN),
+//					 'section'  => 'section_header',
+//					 'settings' => 'theme_options[branding_pad_top]',
+//					 'priority' => 100
+//				 )
+//			)
+//		);
+//		//Branding Header Padding Right
+//		$wp_customize->add_setting( 'theme_options[branding_pad_right]',
+//			array(
+//				'default'         => $this->default['branding_pad_right'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => 'absint',
+//			)
+//		);
+//		$wp_customize->add_control(
+//			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_right]',
+//				 array(
+//					 'description' => __('Right', OMNI_TXT_DOMAIN),
+//					 'section'  => 'section_header',
+//					 'settings' => 'theme_options[branding_pad_right]',
+//					 'priority' => 100
+//				 )
+//			)
+//		);
+//		//Branding Header Padding Bottom
+//		$wp_customize->add_setting( 'theme_options[branding_pad_bottom]',
+//			array(
+//				'default'         => $this->default['branding_pad_bottom'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => 'absint',
+//			)
+//		);
+//		$wp_customize->add_control(
+//			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_bottom]',
+//				 array(
+//					 'description' => __('Bottom', OMNI_TXT_DOMAIN),
+//					 'section'  => 'section_header',
+//					 'settings' => 'theme_options[branding_pad_bottom]',
+//					 'priority' => 100
+//				 )
+//			)
+//		);
+//		//Branding Header Padding Left
+//		$wp_customize->add_setting( 'theme_options[branding_pad_left]',
+//			array(
+//				'default'         => $this->default['branding_pad_left'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => 'absint',
+//			)
+//		);
+//		$wp_customize->add_control(
+//			new Omni_Header_Padding_Control( $wp_customize, 'theme_options[branding_pad_left]',
+//				 array(
+//					 'description' => __('Left', OMNI_TXT_DOMAIN),
+//					 'section'  => 'section_header',
+//					 'settings' => 'theme_options[branding_pad_left]',
+//					 'priority' => 100
+//				 )
+//			)
+//		);
 
 		// Primary Menu Width
 		$wp_customize->add_setting( 'theme_options[primary_menu_width]',
@@ -243,39 +259,39 @@ class OmniHeaderOption {
 		);
 
 		// Setting show_title.
-		$wp_customize->add_setting( 'theme_options[show_title]',
-			array(
-				'default'           => $this->default['show_title'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => array( 'OmniSanitize', 'omni_wp_theme_sanitize_checkbox'),
-			)
-		);
-
-		$wp_customize->add_control( 'theme_options[show_title]',
-			array(
-				'label'    => __( 'Show Site Title', OMNI_TXT_DOMAIN ),
-				'section'  => 'section_header',
-				'type'     => 'checkbox',
-				'priority' => 100,
-			)
-		);
+//		$wp_customize->add_setting( 'theme_options[show_title]',
+//			array(
+//				'default'           => $this->default['show_title'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => array( 'OmniSanitize', 'omni_wp_theme_sanitize_checkbox'),
+//			)
+//		);
+//
+//		$wp_customize->add_control( 'theme_options[show_title]',
+//			array(
+//				'label'    => __( 'Show Site Title', OMNI_TXT_DOMAIN ),
+//				'section'  => 'section_header',
+//				'type'     => 'checkbox',
+//				'priority' => 100,
+//			)
+//		);
 
 		// Setting show_tagline.
-		$wp_customize->add_setting( 'theme_options[show_tagline]',
-			array(
-				'default'           => $this->default['show_tagline'],
-				'capability'        => 'edit_theme_options',
-				'sanitize_callback' => array( 'OmniSanitize', 'omni_wp_theme_sanitize_checkbox'),
-			)
-		);
-		$wp_customize->add_control( 'theme_options[show_tagline]',
-			array(
-				'label'    => __( 'Show Tagline', OMNI_TXT_DOMAIN ),
-				'section'  => 'section_header',
-				'type'     => 'checkbox',
-				'priority' => 100,
-			)
-		);
+//		$wp_customize->add_setting( 'theme_options[show_tagline]',
+//			array(
+//				'default'           => $this->default['show_tagline'],
+//				'capability'        => 'edit_theme_options',
+//				'sanitize_callback' => array( 'OmniSanitize', 'omni_wp_theme_sanitize_checkbox'),
+//			)
+//		);
+//		$wp_customize->add_control( 'theme_options[show_tagline]',
+//			array(
+//				'label'    => __( 'Show Tagline', OMNI_TXT_DOMAIN ),
+//				'section'  => 'section_header',
+//				'type'     => 'checkbox',
+//				'priority' => 100,
+//			)
+//		);
 
 // Setting show_ticker.
 		$wp_customize->add_setting( 'theme_options[show_ticker]',

@@ -8,7 +8,7 @@ jQuery('.nav-link').click(function() {
     var href = link.attr('href');
     console.log(href);
     jQuery('html, body').animate({
-        scrollTop: jQuery(href).offset().top
+        scrollTop: jQuery(href).offset().top - 72
     }, 2000);
 });
 
