@@ -40,6 +40,9 @@ class OmniDefault {
 		$defaults['jumbotron_switch']             = false;
 		$defaults['jumbotron_type']               = 'image';
 		$defaults['jumbotron_bg_image_upload']    = '';
+		$defaults['jumbotron_mp4_upload']         = '';
+		$defaults['jumbotron_ogg_upload']         = '';
+		$defaults['jumbotron_img_cback_upload']   = '';
 		$defaults['jumbotron_header']             = '';
 		$defaults['jumbotron_sub_header']         = '';
 		$defaults['jumbotron_content']            = '';

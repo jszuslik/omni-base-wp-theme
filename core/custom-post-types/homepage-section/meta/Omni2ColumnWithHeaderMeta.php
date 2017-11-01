@@ -6,14 +6,7 @@ class Omni2ColumnWithHeaderMeta {
 	private $template_slug;
 
 	public function __construct() {
-		$post_id = 0;
-		if(isset($_GET['post'])) {
-			$post_id = $_GET['post'];
-			$this->template_slug = get_post_meta($post_id, '_template_type', true);
-		} else {
-			$this->template_slug;
-		}
-		if ('2-column-with-header' == $this->template_slug) :
+
 			add_action( 'add_meta_boxes', array($this, 'omni_wp_theme_add_meta_boxes') );
 			add_action('save_post', array( $this, 'omni_wp_theme_save_meta_data' ) );
 			add_action('admin_print_styles', array( $this, 'omni_wp_theme_meta_image_enqueue'));
@@ -107,18 +100,23 @@ class Omni2ColumnWithHeaderMeta {
 					)
 				)
 			);
-		endif;
 	}
 
 	public function omni_wp_theme_add_meta_boxes() {
-		add_meta_box(
-			'omni_hp_2_column_with_header_section_template',
-			__('Section Settings', OMNI_TXT_DOMAIN),
-			array($this, 'omni_wp_theme_render_meta_box'),
-			'homepage_section',
-			'normal',
-			'default'
-		);
+		$post_id = 0;
+		if(isset($_GET['post']))
+			$post_id = $_GET['post'];
+		$template_slug = get_post_meta($post_id, '_template_type', true);
+		if ('2-column-with-header' == $template_slug) :
+			add_meta_box(
+				'omni_hp_2_column_with_header_section_template',
+				__('Section Settings', OMNI_TXT_DOMAIN),
+				array($this, 'omni_wp_theme_render_meta_box'),
+				'homepage_section',
+				'normal',
+				'default'
+			);
+		endif;
 	}
 
 	public function omni_wp_theme_render_meta_box($post) {

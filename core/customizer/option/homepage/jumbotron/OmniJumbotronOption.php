@@ -71,7 +71,71 @@ class OmniJumbotronOption {
 					'section'    => 'section_jumbotron',
 					'settings'   => 'theme_options[jumbotron_bg_image_upload]',
 					'priority'   => 100,
-					'active_callback' => array( 'OmniCallback', 'omni_wp_theme_is_jumbotron_enabled')
+					'active_callback' => array( 'OmniCallback', 'omni_wp_theme_jumbotron_type_image')
+				)
+			)
+		);
+		// Upload Mp4
+		$wp_customize->add_setting( 'theme_options[jumbotron_mp4_upload]',
+			array(
+				'default'     => $this->default['jumbotron_mp4_upload'],
+				'capability'  => 'edit_theme_options',
+				'sanitize_callback' => 'esc_attr'
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Media_Control(
+				$wp_customize,
+				'theme_options[jumbotron_mp4_upload]',
+				array(
+					'label'      => __( 'Jumbotron Background Video (Mp4 Format)', OMNI_TXT_DOMAIN ),
+					'section'    => 'section_jumbotron',
+					'settings'   => 'theme_options[jumbotron_mp4_upload]',
+					'mime_type'  => 'video/mp4',
+					'priority'   => 100,
+					'active_callback' => array( 'OmniCallback', 'omni_wp_theme_jumbotron_type_video')
+				)
+			)
+		);
+		// Upload OGG
+		$wp_customize->add_setting( 'theme_options[jumbotron_ogg_upload]',
+			array(
+				'default'     => $this->default['jumbotron_ogg_upload'],
+				'capability'  => 'edit_theme_options',
+				'sanitize_callback' => 'esc_attr'
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Media_Control(
+				$wp_customize,
+				'theme_options[jumbotron_ogg_upload]',
+				array(
+					'label'      => __( 'Jumbotron Background Video (OGG, OGV or OGA Format)', OMNI_TXT_DOMAIN ),
+					'section'    => 'section_jumbotron',
+					'settings'   => 'theme_options[jumbotron_ogg_upload]',
+					'mime_type'  => 'video/ogg',
+					'priority'   => 100,
+					'active_callback' => array( 'OmniCallback', 'omni_wp_theme_jumbotron_type_video')
+				)
+			)
+		);
+		$wp_customize->add_setting( 'theme_options[jumbotron_img_cback_upload]',
+			array(
+				'default'     => $this->default['jumbotron_img_cback_upload'],
+				'capability'  => 'edit_theme_options',
+				'sanitize_callback' => 'esc_attr'
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'theme_options[jumbotron_img_cback_upload]',
+				array(
+					'label'      => __( 'Jumbotron Background Image Callback', OMNI_TXT_DOMAIN ),
+					'section'    => 'section_jumbotron',
+					'settings'   => 'theme_options[jumbotron_img_cback_upload]',
+					'priority'   => 100,
+					'active_callback' => array( 'OmniCallback', 'omni_wp_theme_jumbotron_type_video')
 				)
 			)
 		);

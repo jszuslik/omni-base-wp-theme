@@ -11765,7 +11765,7 @@ a.omni_color_white:hover {
 .jumbotron {
   position: relative;
   padding: 0;
-  margin: 0;
+  margin: 40px 0 0;
 }
 
 .jumbotron-content-wrapper {
@@ -11828,6 +11828,14 @@ a.omni_color_white:hover {
   font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 2;
+}
+
+.jumbotron-video-wrapper {
+  display: grid;
+}
+
+#video-background {
+  width: 100%;
 }
 
 .social-navigation.header {

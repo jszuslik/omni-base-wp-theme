@@ -71,4 +71,12 @@ class OmniCallback {
 		}
 	}
 
+	public static function omni_wp_theme_jumbotron_type_image( $control ) {
+		return ('image' == $control->manager->get_setting('theme_options[jumbotron_type]')->value()) ? true : false;
+	}
+
+	public static function omni_wp_theme_jumbotron_type_video( $control ) {
+		return ('video' == $control->manager->get_setting('theme_options[jumbotron_type]')->value()) ? true : false;
+	}
+
 }

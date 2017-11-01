@@ -10,6 +10,7 @@ class OmniJumbotronHook {
 		$is_enabled = OmniCore::omni_wp_theme_get_option('jumbotron_switch');
 		$jumbotron_type = OmniCore::omni_wp_theme_get_option('jumbotron_type');
 		if($is_enabled) {
+		    p($jumbotron_type);
 			switch($jumbotron_type) {
 				case 'image':
 					self::omni_wp_theme_display_image_jumbotron();
@@ -56,8 +57,44 @@ class OmniJumbotronHook {
 	<?php }
 
 	public function omni_wp_theme_display_video_jumbotron() {
-		echo 'This is not setup yet';
-	}
+	    $jumbotron_mp4 = OmniCore::omni_wp_theme_get_option('jumbotron_mp4_upload');
+		$jumbotron_ogg = OmniCore::omni_wp_theme_get_option('jumbotron_ogg_upload');
+		$jumbotron_image_callback = OmniCore::omni_wp_theme_get_option('jumbotron_img_cback_upload');
+		if($jumbotron_image_callback) {
+			$responsive_set = OmniCore::omni_wp_theme_return_responsive_image_set($jumbotron_image_callback, 'omni-jumbotron');
+		} else {
+			$responsive_set = 'No Image';
+		}
+		$jumbotron_header = OmniCore::omni_wp_theme_get_option('jumbotron_header');
+		$jumbotron_sub_header = OmniCore::omni_wp_theme_get_option('jumbotron_sub_header');
+		$jumbotron_content = OmniCore::omni_wp_theme_get_option('jumbotron_content');
+
+	    ?>
+        <div class="jumbotron">
+            <div class="jumbotron-video-wrapper">
+                <video id="video-background" preload="" muted="" autoplay="" loop="">
+                    <source src="<?php echo wp_get_attachment_url($jumbotron_mp4); ?>" type="video/mp4">
+                    <source src="<?php echo wp_get_attachment_url($jumbotron_ogg); ?>" type="video/ogg">
+	                <?php echo $responsive_set; ?>
+                </video>
+            </div>
+            <div class="jumbotron-content-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="jumbo-content-outer-wrapper">
+                                <div class="jumbo-content-inner-wrapper">
+                                    <h2 class="jumbotron-header omni_color_white"><?php echo $jumbotron_header; ?></h2>
+                                    <h3 class="jumbotron-sub-header omni_color_white"><?php echo $jumbotron_sub_header; ?></h3>
+                                    <p class="jumbotron-content omni_color_gray"><?php echo $jumbotron_content; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<?php }
 
 }
 $omni_jumbotron_hook = new OmniJumbotronHook();

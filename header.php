@@ -13,7 +13,7 @@
 	<?php do_action('omni_wp_theme_action_head'); ?>
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body id="omni_one_page_home" <?php body_class(); ?>>
 <?php do_action('omni_wp_theme_action_before'); ?>
 <?php do_action('omni_wp_theme_action_before_header'); ?>
 <?php do_action('omni_wp_theme_action_header'); ?>
