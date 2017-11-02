@@ -28,16 +28,18 @@ class OmniCore {
 	}
 
 	public static function omni_wp_theme_return_responsive_image_set_with_lightbox( $image_url, $image_size = 'full',
-		$lightbox_group_id = 'default-lightbox', $width = 'auto', $height = 'auto' ) {
+		$lightbox_group_id = 'default-lightbox', $width = 'auto', $height = 'auto', $img_fluid = true ) {
 		$image_id = self::omni_wp_theme_get_image_id_by_url($image_url);
-
 		$image_size_url = wp_get_attachment_image_src($image_id, $image_size);
 		$orig_image_url = wp_get_attachment_url($image_id);
 		$image_srcset = wp_get_attachment_image_srcset($image_id, $image_size);
 
 		$image = '<a data-lightbox="' . $lightbox_group_id . '" href="' . $orig_image_url . '">';
-		$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid" width="'
-		          .$width.'" height="'.$height.'">';
+		if ($img_fluid) {
+			$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" class="img-fluid" width="' .$width.'" height="'.$height.'">';
+		} else {
+			$image .= '<img src="' . $image_size_url[0] . '" srcset="' . $image_srcset . '" width="' .$width.'" height="'.$height.'">';
+		}
 		$image .= '</a>';
 
 		return $image;

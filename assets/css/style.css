@@ -11465,7 +11465,7 @@ a.omni_color_white:hover {
   background-color: #ffffff;
   border: 1px solid #000000;
   letter-spacing: 1.5px;
-  padding: 15px 125px 15px 20px;
+  padding: 15px 20px;
   -moz-transition: all 0.4s ease-out 0s;
   -webkit-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
@@ -11476,6 +11476,15 @@ a.omni_color_white:hover {
   color: #ffffff;
   background-color: #000000;
   text-decoration: none;
+}
+
+@media (min-width: 1200px) {
+  .omni_btn_light {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-top: 40px;
+    padding: 15px 125px 15px 20px;
+  }
 }
 
 @font-face {
@@ -11730,7 +11739,7 @@ a.omni_color_white:hover {
 }
 
 #menu-primary-menu .nav-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 13.3px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -11747,33 +11756,39 @@ a.omni_color_white:hover {
     padding: 15px 0 10px;
   }
   #menu-primary-menu {
-    display: flex;
     align-items: stretch;
-    /* Default */
+    display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin: 0 0 0 90px;
+    margin: 0 0 0 10px;
     padding: 0;
+    width: 100%;
   }
   #menu-primary-menu .nav-item {
     display: block;
     flex: 0 1 auto;
-    /* Default */
+  }
+  #menu-primary-menu .nav-link {
+    font-size: 12.3px;
+  }
+}
+
+@media (min-width: 992px) {
+  #menu-primary-menu {
+    align-items: stretch;
+    margin: 0 0 0 90px;
+  }
+  #menu-primary-menu .nav-link {
+    font-size: 13.3px;
   }
 }
 
 .jumbotron {
-  position: relative;
+  margin: 55px 0 0;
   padding: 0;
-  margin: 40px 0 0;
+  position: relative;
 }
 
 .jumbotron-content-wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&1+0,0+100 */
   background: -moz-linear-gradient(left, black 0%, transparent 100%);
   /* FF3.6-15 */
@@ -11781,19 +11796,25 @@ a.omni_color_white:hover {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, black 0%, transparent 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  bottom: 0;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=1 );
   /* IE6-9 */
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .jumbotron-content-wrapper .container,
 .jumbotron-content-wrapper .container .row,
-.jumbotron-content-wrapper .container .row div[class^="col-*"],
+.jumbotron-content-wrapper div[class^="col-*"],
 .jumbo-content-outer-wrapper {
   height: 100%;
 }
 
 .jumbo-content-outer-wrapper {
   display: table;
+  width: 100%;
 }
 
 .jumbo-content-inner-wrapper {
@@ -11806,27 +11827,30 @@ a.omni_color_white:hover {
 }
 
 .jumbotron-header {
+  font-family: "timesbold_italic", serif;
   font-size: 40px;
-  font-family: 'timesbold_italic', serif;
   font-style: italic;
-  text-transform: uppercase;
   letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .jumbotron-sub-header {
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
-  font-family: "Roboto",sans-serif;
   font-weight: 400;
-  text-transform: uppercase;
   letter-spacing: 5px;
-  padding-bottom: 40px;
+  padding: 0 15px 40px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .jumbotron-content {
+  display: none;
+  font-family: "Roboto", sans-serif;
   font-size: 14.7px;
-  font-family: "Roboto",sans-serif;
   font-weight: 400;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   line-height: 2;
 }
 
@@ -11834,8 +11858,37 @@ a.omni_color_white:hover {
   display: grid;
 }
 
-#video-background {
+.video-background {
   width: 100%;
+}
+
+@media (min-width: 568px) {
+  .jumbotron-header {
+    font-size: 40px;
+    letter-spacing: 5px;
+    text-align: left;
+  }
+  .jumbotron-sub-header {
+    font-size: 16px;
+    letter-spacing: 5px;
+    padding: 0 0 40px;
+    text-align: left;
+  }
+  .jumbotron-content {
+    display: block;
+    font-family: "Roboto", sans-serif;
+    font-size: 14.7px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    line-height: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    margin: 130px 0 0;
+    padding: 0;
+  }
 }
 
 .social-navigation.header {
@@ -12224,31 +12277,36 @@ a.omni_color_white:hover {
 }
 
 .omni_2_column_w_header_bg {
-  background-size: 100% 140px;
   background-repeat: no-repeat;
+  background-size: 100% 140px;
+  padding-bottom: 20px;
 }
 
 .omni_2_column_w_header_header {
-  font-family: 'timesbold_italic', serif;
-  text-transform: uppercase;
-  text-align: center;
+  color: #fff;
+  font-family: "timesbold_italic", serif;
+  font-size: .9rem;
   font-style: italic;
-  color: #ffffff;
-  font-size: 0.9rem;
   letter-spacing: 1px;
   padding-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .section-header-start {
-  font-family: 'Roboto', sans-serif;
-  font-size: 9px;
-  vertical-align: super;
   border-bottom: 1px solid #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 9px;
   line-height: 1;
+  vertical-align: super;
 }
 
 .section-2-column-w-header-top-content {
   padding: 0;
+}
+
+.section-2-column-w-header-top-content h3::first-letter {
+  border-bottom: 2px solid #fff;
 }
 
 .section-2-column-w-header-bottom-content {
@@ -12256,38 +12314,42 @@ a.omni_color_white:hover {
 }
 
 .omni_column_header_small {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
-  text-transform: uppercase;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 .omni_column_title {
-  font-family: 'timesbold_italic', serif;
+  font-family: "timesbold_italic", serif;
   font-size: 1.5rem;
-  text-transform: uppercase;
   font-style: italic;
   letter-spacing: 5px;
-}
-
-.section-2-column-w-header-top-content h3::first-letter {
-  border-bottom: 2px solid #fff;
+  text-transform: uppercase;
 }
 
 .section-2-column-w-header-top-content h6 span {
   cursor: pointer;
-  font-family: "Roboto",sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 10px;
-  text-transform: uppercase;
-  text-decoration: underline;
-  letter-spacing: 1.5px;
   font-weight: 300;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+  text-transform: uppercase;
 }
 
 .omni_column_content {
   font-size: 11px;
   line-height: 1.2;
   letter-spacing: 0.5px;
+}
+
+.column-image-wrapper {
+  overflow: hidden;
+}
+
+.column-image-wrapper img {
+  max-height: 330px;
 }
 
 @media (min-width: 568px) {
@@ -12330,14 +12392,20 @@ a.omni_color_white:hover {
 
 @media (min-width: 768px) {
   .omni_2_column_w_header_bg {
-    background-size: 100% 220px;
     background-repeat: no-repeat;
-    padding-bottom: 115px;
+    background-size: 100% 220px;
+    padding-bottom: 100px;
   }
   .omni_2_column_w_header_header {
     font-size: 2rem;
     letter-spacing: 2px;
     padding-bottom: 20px;
+  }
+  .column-image-wrapper {
+    overflow: hidden;
+  }
+  .column-image-wrapper img {
+    max-height: 400px;
   }
   .section-header-start {
     font-size: 16px;
@@ -12367,6 +12435,7 @@ a.omni_color_white:hover {
   .omni_2_column_w_header_bg {
     background-size: 100% 240px;
     background-repeat: no-repeat;
+    padding-bottom: 115px;
   }
   .omni_2_column_w_header_header {
     font-size: 2rem;
@@ -12397,6 +12466,14 @@ a.omni_color_white:hover {
     font-size: 14.7px;
     line-height: 2;
     letter-spacing: 0.25px;
+  }
+  .column-image-wrapper {
+    overflow: hidden;
+  }
+  .column-image-wrapper img {
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
   }
 }
 
@@ -12600,8 +12677,8 @@ a.omni_color_white:hover {
 
 .omni_single_image_side_inner_wrapper {
   display: table-cell;
+  padding: 0;
   vertical-align: middle;
-  padding: 0 70px 0 0;
 }
 
 .omni_side_header {
@@ -12617,17 +12694,25 @@ a.omni_color_white:hover {
   padding-bottom: 40px;
 }
 
+@media (min-width: 1200px) {
+  .omni_single_image_side_inner_wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 70px 0 0;
+  }
+}
+
 .omni_2_col_2_row_header {
   padding: 75px 0;
 }
 
 .omni_section_header {
   font-family: 'timesbold_italic', serif;
-  font-size: 87px;
+  font-size: 24px;
   text-transform: uppercase;
   color: #1b1b1b;
   letter-spacing: 5px;
-  padding: 100px 0;
+  padding: 20px 0;
 }
 
 .omni_section_row_1_wrapper {
@@ -12661,6 +12746,14 @@ a.omni_color_white:hover {
 .omni_2_col_2_row_header .omni_btn_light {
   text-align: center;
   padding: 15px 30px;
+}
+
+@media (min-width: 1200px) {
+  .omni_section_header {
+    font-size: 87px;
+    letter-spacing: 5px;
+    padding: 100px 0;
+  }
 }
 
 .omni_vendors {

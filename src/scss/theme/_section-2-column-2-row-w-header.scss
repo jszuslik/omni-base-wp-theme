@@ -3,11 +3,11 @@
 }
 .omni_section_header {
   font-family: 'timesbold_italic', serif;
-  font-size: 87px;
+  font-size: 24px;
   text-transform: uppercase;
   color: #1b1b1b;
   letter-spacing: 5px;
-  padding: 100px 0;
+  padding: 20px 0;
 }
 .omni_section_row_1_wrapper {
   padding: 100px 0 40px;
@@ -34,4 +34,24 @@
 .omni_2_col_2_row_header .omni_btn_light {
   text-align: center;
   padding: 15px 30px;
+}
+
+@media (min-width: 568px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+  .omni_section_header {
+	font-size: 87px;
+	letter-spacing: 5px;
+	padding: 100px 0;
+  }
 }

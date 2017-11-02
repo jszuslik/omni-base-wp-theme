@@ -7,7 +7,6 @@ class OmniHeaderCustomHook {
 		add_action('omni_wp_theme_action_before_header', array($this, 'omni_wp_theme_header_top_content'), 5);
 		add_action('omni_wp_theme_action_header', array($this, 'omni_wp_theme_header_branding'), 10);
 		add_filter ( 'nav_menu_css_class', array($this, 'omni_wp_theme_social_menu_item_classes'), 10, 4 );
-		add_filter( 'get_custom_logo',  array($this, 'omni_wp_theme_change_custom_logo_url') );
 	}
 
 	public function omni_wp_theme_skip_to_content() { ?>
@@ -58,14 +57,6 @@ class OmniHeaderCustomHook {
         }
     }
 
-    public function omni_wp_theme_change_custom_logo_url($html) {
-        $top_id = '#omni_one_page_home';
-        $custom_logo_id = get_theme_mod( 'custom_logo' );
-        $html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>', esc_url( $top_id ), wp_get_attachment_image( $custom_logo_id, 'omni-logo', false, array('class'    => 'custom-logo', ) )
-    );
-
-        return $html;
-    }
 
     public function omni_wp_theme_inline_menu_branding() { ?>
         <div class="om-menu-wrapper">

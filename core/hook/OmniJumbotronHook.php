@@ -10,7 +10,6 @@ class OmniJumbotronHook {
 		$is_enabled = OmniCore::omni_wp_theme_get_option('jumbotron_switch');
 		$jumbotron_type = OmniCore::omni_wp_theme_get_option('jumbotron_type');
 		if($is_enabled) {
-		    p($jumbotron_type);
 			switch($jumbotron_type) {
 				case 'image':
 					self::omni_wp_theme_display_image_jumbotron();
@@ -72,7 +71,7 @@ class OmniJumbotronHook {
 	    ?>
         <div class="jumbotron">
             <div class="jumbotron-video-wrapper">
-                <video id="video-background" preload="" muted="" autoplay="" loop="">
+                <video class="video-background" preload="" muted="" autoplay="" loop="">
                     <source src="<?php echo wp_get_attachment_url($jumbotron_mp4); ?>" type="video/mp4">
                     <source src="<?php echo wp_get_attachment_url($jumbotron_ogg); ?>" type="video/ogg">
 	                <?php echo $responsive_set; ?>

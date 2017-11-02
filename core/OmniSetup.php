@@ -148,8 +148,10 @@ class OmniSetup {
 
 	public function omni_wp_theme_change_logo_class( $html ) {
 
-		$html = str_replace( 'custom-logo', 'omni-custom-logo-style-svg', $html );
-		$html = str_replace( 'custom-logo-link', 'omni-custom-logo-style-svg', $html );
+		$top_id = '#omni_one_page_home';
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$html = sprintf( '<a href="%1$s" class="omni-custom-logo-style-svg-link" rel="home" itemprop="url">%2$s</a>', esc_url( $top_id ), wp_get_attachment_image( $custom_logo_id, 'omni-logo', false, array('class'    => 'omni-custom-logo-style-svg', ) )
+		);
 
 		return $html;
 	}

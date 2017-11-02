@@ -54,7 +54,7 @@
 			</div>
 			<div class="col-5">
 				<div class="column-image-wrapper">
-					<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_column_image'][0], '2-column-with-header-column', $section_light_box_group_id); ?>
+					<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_column_image'][0], '2-column-with-header-column', $section_light_box_group_id, 'auto', 'auto', false); ?>
                 </div>
 			</div>
 			<div class="col-7">

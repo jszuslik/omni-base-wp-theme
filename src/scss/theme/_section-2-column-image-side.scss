@@ -9,8 +9,8 @@
 }
 .omni_single_image_side_inner_wrapper {
   display: table-cell;
+  padding: 0;
   vertical-align: middle;
-  padding: 0 70px 0 0;
 }
 .omni_side_header {
   font-size: 14.7px;
@@ -37,5 +37,9 @@
 }
 
 @media (min-width: 1200px) {
-
+  .omni_single_image_side_inner_wrapper {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 70px 0 0;
+  }
 }
