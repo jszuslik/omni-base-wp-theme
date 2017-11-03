@@ -18,6 +18,7 @@ $valid_section_meta = OmniCommon::omni_wp_theme_field_validation($post_id, $sect
 				<h4 class="omni_single_header omni_text_center omni_press_room_header omni_color_gray"><?php echo
 					$valid_section_meta['omni_section_header'][0]; ?></h4>
 			</div>
+        </div>
 		<?php
 
 			do_action('omni_wp_theme_action_display_vendor');

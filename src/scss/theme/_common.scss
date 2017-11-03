@@ -2,42 +2,41 @@
   text-align: center;
 }
 .omni_color_white {
-  color: #fff;
+  color: $color-white;
   -moz-transition: all 0.4s ease-out 0s;
   -webkit-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
 }
 .omni_color_gray {
-  color: #6a6969;
+  color: $color-secondary-gray;
 }
 .omni_color_dark_gray {
-  color: #131212;
+  color: $color-dark-gray;
 }
 .omni_bg_color_light_gray {
-  background-color: #f0f0f0;
+  background-color: $color-light-gray;
 }
 a.omni_color_white:hover {
-  color: #4b4b4b;
+  color: $color-gray;
 }
 .omni_btn_light {
+  border: 1px solid $color-black;
+  color: $color-black;
   display: inline-block;
-  text-transform: uppercase;
+  font-family: 'Roboto', serif;
   font-size: 12px;
   font-weight: 700;
-  font-family: 'Roboto', serif;
-  color: #000000;
-  background-color: #ffffff;
-  border: 1px solid #000000;
   letter-spacing: 1.5px;
+  margin-top: 10px;
   padding: 15px 20px;
   -moz-transition: all 0.4s ease-out 0s;
   -webkit-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
-  margin-top: 40px;
+  text-transform: uppercase;
 }
 .omni_btn_light:hover {
-  color: #ffffff;
-  background-color: #000000;
+  background-color: $color-black;
+  color: $color-white;
   text-decoration: none;
 }
 
@@ -46,18 +45,23 @@ a.omni_color_white:hover {
 }
 
 @media (min-width: 768px) {
-
+  .omni_btn_light {
+	font-size: 12px;
+	letter-spacing: 1.5px;
+	margin-top: 40px;
+	padding: 15px 20px;
+  }
 }
 
 @media (min-width: 992px) {
-
-}
-
-@media (min-width: 1200px) {
   .omni_btn_light {
 	font-size: 12px;
 	letter-spacing: 1.5px;
 	margin-top: 40px;
 	padding: 15px 125px 15px 20px;
   }
+}
+
+@media (min-width: 1200px) {
+
 }

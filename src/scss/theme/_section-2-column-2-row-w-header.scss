@@ -1,43 +1,68 @@
 .omni_2_col_2_row_header {
-  padding: 75px 0;
-}
-.omni_section_header {
-  font-family: 'timesbold_italic', serif;
-  font-size: 24px;
-  text-transform: uppercase;
-  color: #1b1b1b;
-  letter-spacing: 5px;
-  padding: 20px 0;
-}
-.omni_section_row_1_wrapper {
-  padding: 100px 0 40px;
-}
-.omni_section_row_2_wrapper {
-  padding: 40px 0 100px;
-}
-.omni_2_col_2_row_header .omni_side_header {
-  padding-bottom: 30px;
-}
-.omni_2_col_2_row_header .omni_column_content {
-  font-size: 13px;
-}
-.omni_row_content_outer_wrapper {
-  display: table;
-  height: 100%;
-  width: 100%;
-}
-.omni_row_content_inner_wrapper {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 0 15px;
-}
-.omni_2_col_2_row_header .omni_btn_light {
-  text-align: center;
-  padding: 15px 30px;
+  padding: 0;
+
+  .omni_section_header {
+	color: $font-color;
+	font-family: $font-stack-times;
+	font-size: 24px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	padding: 20px 0;
+  }
+
+  .omni_section_row_1_wrapper {
+	padding: 40px 0 20px;
+  }
+
+  .omni_section_row_2_wrapper {
+	padding: 20px 0 40px;
+  }
+
+  .omni_2_col_2_row_header .omni_side_header {
+	padding-bottom: 30px;
+  }
+
+  .omni_2_col_2_row_header .omni_column_content {
+	font-size: 13px;
+  }
+
+  .omni_row_content_outer_wrapper {
+	display: table;
+	height: 100%;
+	width: 100%;
+  }
+
+  .omni_row_content_inner_wrapper {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 15px;
+  }
+
+  .omni_side_header {
+	font-family: $font-stack-roboto;
+	font-size: 14.7px;
+	font-weight: 400;
+	letter-spacing: 3px;
+	line-height: 1.75;
+	margin-top: 15px;
+	text-transform: uppercase;
+  }
+
+  .omni_2_col_2_row_header .omni_btn_light {
+	text-align: center;
+	padding: 15px 30px;
+  }
 }
 
 @media (min-width: 568px) {
+  .omni_2_col_2_row_header {
 
+	.omni_section_header {
+	  font-size: 40px;
+	  letter-spacing: 5px;
+	  padding: 20px 0;
+	}
+  }
 }
 
 @media (min-width: 768px) {
@@ -45,13 +70,34 @@
 }
 
 @media (min-width: 992px) {
+  .omni_2_col_2_row_header {
+	padding: 75px 0;
 
+	.omni_section_header {
+	  font-size: 87px;
+	  letter-spacing: 5px;
+	  padding: 100px 0;
+	}
+
+	.omni_section_row_1_wrapper {
+	  padding: 100px 0 40px;
+	}
+
+	.omni_section_row_2_wrapper {
+	  padding: 40px 0 100px;
+	}
+
+	.omni_side_header {
+	  margin-top: 0;
+	}
+
+	.omni_btn_light {
+	  padding: 15px 40px;
+	}
+
+  }
 }
 
 @media (min-width: 1200px) {
-  .omni_section_header {
-	font-size: 87px;
-	letter-spacing: 5px;
-	padding: 100px 0;
-  }
+
 }

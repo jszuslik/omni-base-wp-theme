@@ -57,12 +57,12 @@ for($i = 0; $i < count($section_header_array); $i++) {
 	<div class="omni_section_row_1_wrapper omni_bg_color_light_gray">
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-sm-6">
 					<div class="omni_row_image_wrapper">
 						<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_row_1_image'][0], 'omni-row-image', $section_light_box_group_id, 380, 315); ?>
 					</div>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-sm-6">
                     <div class="omni_row_content_outer_wrapper">
                         <div class="omni_row_content_inner_wrapper">
                             <h5 class="omni_side_header omni_color_dark_gray"><?php echo $valid_section_meta['omni_section_row_1_header'][0]; ?></h5>
@@ -71,10 +71,11 @@ for($i = 0; $i < count($section_header_array); $i++) {
 
                                 if($valid_section_meta['omni_section_row_1_opt_in_enable'][0]) :
 	                                ?>
-                                    <a href="javascript:void(0)" target="_blank" class="omni_btn_light" data-toggle="modal" data-target="#row_1_modal"><?php echo
+                                    <a href="javascript:void(0)" target="_blank" class="omni_btn_light omni_bg_color_light_gray"
+                                       data-toggle="modal" data-target="#row_1_modal"><?php echo
                                         $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a> <?php
                                 else :
-                                    ?> <a href="<?php echo $valid_section_meta['omni_section_row_1_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a> <?php
+                                    ?> <a href="<?php echo $valid_section_meta['omni_section_row_1_lookbook'][0]; ?>" target="_blank" class="omni_btn_light omni_bg_color_light_gray"><?php echo $valid_section_meta['omni_section_row_1_link_text'][0]; ?></a> <?php
                                 endif;
                             ?>
 
@@ -87,7 +88,7 @@ for($i = 0; $i < count($section_header_array); $i++) {
 	<div class="omni_section_row_2_wrapper omni_bg_color_light_gray">
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-sm-6 order-sm-first">
                     <div class="omni_row_content_outer_wrapper">
                         <div class="omni_row_content_inner_wrapper">
                             <h5 class="omni_side_header omni_color_dark_gray"><?php echo $valid_section_meta['omni_section_row_2_header'][0]; ?></h5>
@@ -96,16 +97,17 @@ for($i = 0; $i < count($section_header_array); $i++) {
 
 	                        if($valid_section_meta['omni_section_row_2_opt_in_enable'][0]) :
 		                        ?>
-                                <a href="javascript:void(0)" target="_blank" class="omni_btn_light" data-toggle="modal" data-target="#row_2_modal"><?php echo
+                                <a href="javascript:void(0)" target="_blank" class="omni_btn_light omni_bg_color_light_gray"
+                                   data-toggle="modal" data-target="#row_2_modal"><?php echo
 			                        $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a> <?php
 	                        else :
-		                        ?> <a href="<?php echo $valid_section_meta['omni_section_row_2_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a> <?php
+		                        ?> <a href="<?php echo $valid_section_meta['omni_section_row_2_lookbook'][0]; ?>" target="_blank" class="omni_btn_light omni_bg_color_light_gray"><?php echo $valid_section_meta['omni_section_row_2_link_text'][0]; ?></a> <?php
 	                        endif;
 	                        ?>
                         </div>
                     </div>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 order-first col-sm-6">
 					<div class="omni_row_image_wrapper">
 						<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_row_2_image'][0], 'omni-row-image', $section_light_box_group_id); ?>
 					</div>

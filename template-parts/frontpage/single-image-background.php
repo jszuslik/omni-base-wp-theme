@@ -21,7 +21,7 @@ $section_fields = array(
  $valid_section_meta = OmniCommon::omni_wp_theme_field_validation($post_id, $section_meta, $section_fields);
  $responsive_bg_set = OmniCore::omni_wp_theme_return_responsive_image_set($valid_section_meta['omni_section_background_image'][0], 'omni-single-bg');
 ?>
-<section id="<?php echo $valid_section_meta['omni_section_id'][0]; ?>" class="omni_full_width_image_section">
+<section id="<?php echo $valid_section_meta['omni_section_id'][0]; ?>" class="omni_single_image_section">
 	<div class="<?php echo $valid_section_meta['omni_section_content_width'][0]; ?>">
         <div class="omni-single-image-wrapper">
 			<?php echo $responsive_bg_set; ?>

@@ -101,9 +101,11 @@ class OmniVendorsSectionMeta {
 		$info = 'No Vendors';
 
 		if(0 < count($vendors)) :
+			$info = '<div class="row">';
 			foreach ($vendors as $vendor) :
 				$vendor_meta = get_post_meta($vendor->ID);
-				$info = '<div class="col-6 col-sm-4">';
+				$info .= '<div class="col-12 col-sm-6 col-lg-4">';
+				$info .= '<div class="omni_vendor_content_wrapper">';
 				$state = null;
 				if(isset($vendor_meta['omni_vendor_state'])) {
 					$state = $vendor_meta['omni_vendor_state'][0];
@@ -139,9 +141,10 @@ class OmniVendorsSectionMeta {
 					$info .= '<h5 class="omni_vendor_content omni_color_gray">Fax: ' . $vendor_meta['omni_vendor_fax'][0] . '</h5>';
 				}
 
-
+				$info .= '</div>';
 				$info .= '</div>';
 			endforeach;
+			$info .= '</div>';
 		endif;
 
 		echo $info;

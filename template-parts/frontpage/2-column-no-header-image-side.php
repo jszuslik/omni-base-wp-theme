@@ -32,29 +32,38 @@ $valid_section_meta = OmniCommon::omni_wp_theme_field_validation($post_id, $sect
 	<div class="<?php echo $valid_section_meta['omni_section_content_width'][0]; ?>">
 		<div class="row">
 			<?php if('right' == $valid_section_meta['omni_section_side'][0]) :  ?>
-				<div class="col-6">
-					<div class="omni_single_image_side">
-						<div class="omni_single_image_side_inner_wrapper">
-							<h5 class="omni_side_header"><?php echo $valid_section_meta['omni_section_header'][0]; ?></h5>
-							<p class="omni_column_content omni_color_gray"><?php echo htmlspecialchars_decode($valid_section_meta['omni_section_content'][0]); ?></p>
-							<a href="<?php echo $valid_section_meta['omni_section_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_link_text'][0]; ?></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-1"></div>
-				<div class="col-5">
-					<div class="omni_single_image_side">
-						<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_column_image'][0], 'omni-column', $section_light_box_group_id); ?>
-					</div>
-				</div>
+                <div class="col-12 col-md-6 order-md-first">
+                    <div class="omni_single_image_side">
+                        <div class="omni_single_image_side_inner_wrapper">
+                            <h5 class="omni_side_header"><?php echo $valid_section_meta['omni_section_header'][0]; ?></h5>
+                            <p class="omni_column_content omni_color_gray"><?php echo htmlspecialchars_decode($valid_section_meta['omni_section_content'][0]); ?></p>
+                            <a href="<?php echo $valid_section_meta['omni_section_lookbook'][0]; ?>" target="_blank" class="omni_btn_light"><?php echo $valid_section_meta['omni_section_link_text'][0]; ?></a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col order-md-2"></div>
+                <div class="col-12 order-first col-md-5 order-md-3">
+                    <div class="omni_single_image_side">
+                        <div class="omni_single_image_wrapper">
+                            <?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox
+                            ($valid_section_meta['omni_section_column_image'][0], 'omni-column',
+                             $section_light_box_group_id, 'auto', 'auto', false); ?>
+                        </div>
+                    </div>
+                </div>
+
 			<?php elseif ('left' == $valid_section_meta['omni_section_side'][0]) : ?>
-				<div class="col-5">
+				<div class="col-12 col-md-5">
 					<div class="omni_single_image_side">
-						<?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox($valid_section_meta['omni_section_column_image'][0], 'omni-column', $section_light_box_group_id); ?>
+                        <div class="omni_single_image_wrapper">
+                            <?php echo OmniCore::omni_wp_theme_return_responsive_image_set_with_lightbox
+                            ($valid_section_meta['omni_section_column_image'][0], 'omni-column',
+                             $section_light_box_group_id, 'auto', 'auto', false); ?>
+                        </div>
 					</div>
 				</div>
-				<div class="col-1"></div>
-				<div class="col-6">
+				<div class="col"></div>
+				<div class="col-12 col-md-6">
 					<div class="omni_single_image_side">
 						<div class="omni_single_image_side_inner_wrapper">
 							<h5 class="omni_side_header"><?php echo $valid_section_meta['omni_section_header'][0]; ?></h5>
